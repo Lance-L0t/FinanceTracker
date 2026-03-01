@@ -1,0 +1,270 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+body {
+  background-color: #ffffff;
+  color: #212529;
+}
+
+.main {
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: auto auto auto auto;
+  gap: 20px;
+  height: 100vh;
+  margin: 50px 10px;
+  margin-left: 290px;
+}
+
+.left-side-menu {
+  grid-column: 1 / 2;
+  height: 90vh;
+  position: fixed;
+  left: -20px;
+  padding: 30px;
+  margin-right: 240px;
+  margin-left: 40px;
+  border-radius: 20px;
+  background-color: #f8f9fa;
+  border: 2px solid #dee2e6;
+  transition: 0.3s;
+  display: flex;
+  justify-content: center;
+  box-shadow: 1px 1px 0px #dee2e6;
+}
+.profile-pic {
+  width: 200px;
+  height: 200px;
+  background-color: #212529;
+  border-radius: 50%;
+  padding: 20px;
+  margin: 10px;
+}
+.new-account {
+  background-color: #ffff;
+  color: #212529;
+  border: 1px solid #dee2e6;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.new-account-btn {
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: 500;
+  background-color: #4361ee;
+}
+.new-account-btn:hover {
+  color: #ffffff;
+  font-weight: 500;
+}
+.new-account h4 {
+  padding-bottom: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+.main-content {
+  grid-column: 2 / 4;
+  border: 2px solid #dee2e6;
+  border-radius: 10px;
+  margin-left: 5px;
+  background-color: #f8f9fa;
+  box-shadow: 1px 1px 0px #dee2e6;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+  padding-inline: 30px;
+  align-items: center;
+  background-color: white;
+  color: #212529;
+  border-radius: 10px;
+}
+ul {
+  display: flex;
+  padding: 20px;
+}
+li {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  margin-inline: 10px;
+}
+li i {
+  margin: 10px;
+  font-weight: 500;
+}
+.dashboard {
+  padding: 30px;
+  margin: 20px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  height: 250px;
+  background-color: #4361ee;
+  transition: 0.3s;
+}
+.dashboard:hover {
+  box-shadow: 0 1px 4px;
+}
+.user-amount {
+  width: 500px;
+  padding: 30px;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+}
+.menu {
+  padding: 20px;
+  width: 300px;
+  border-radius: 5px;
+  color: white;
+  display: flex;
+  justify-content: end;
+}
+
+.menu ul li i {
+  font-size: larger;
+  padding: 20px;
+  text-align: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  color: #ffffff;
+  background-color: #4361ee;
+  border: 1px solid white;
+  transition: 0.3s;
+}
+.menu ul li i:hover {
+  background-color: #ffffff;
+  color: #4361ee;
+}
+.balance h4 {
+  font-size: 50px;
+  /* padding: 20px; */
+}
+
+
+
+.history-section {
+  padding: 30px;
+  margin: 20px;
+  border-radius: 10px;
+  height: 250px;
+  background-color: white;
+  transition: 0.3s;
+  border: 2px solid #dee2e6;
+}
+.history-section:hover {
+  box-shadow: 0 1px 4px;
+}
+.history-heading{
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  padding-bottom: 10px;
+}
+#add-expenditure{
+  padding: 5px;
+  border-radius: 5px;
+  background: none;
+  background-color: #4361ee;
+  color: white;
+  border: none;
+}
+.transaction-history {
+  display: flex;
+  height: 10px;
+  font-style: italic;
+  font-weight: 700;
+  margin: 0;
+  padding: 25px;
+  justify-content: space-around;
+  align-items: center;
+}
+.first-transaction h4 {
+  text-align: center;
+  padding: 5px 10px;
+  border-top: 1px solid;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Dark Mode Toggle */
+.dark-mode {
+  color: white;
+  background-color: rgb(14, 11, 28);
+  transition: 0.3s;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Right side menu */
+.right-side-menu {
+  grid-column: 4 / 5;
+  height: 90vh;
+  padding: 20px;
+  /* position: fixed; */
+  background-color: #4895ef;
+  border-radius: 10px;
+  width: 300px;
+  box-shadow: 0 1px 3px;
+  box-shadow: 1px 1px 0px #dee2e6;
+}

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Finance Tracker</title>
+  </head>
+  <script
+    src="https://kit.fontawesome.com/bd6d69ba89.js"
+    crossorigin="anonymous"
+  ></script>
+  <link rel="stylesheet" href="style.css" />
+  <body>
+    <!-- Main COntainer -->
+    <div class="main">
+      <!-- Left Side menu -->
+      <div class="left-side-menu">
+        <aside>
+          <div class="profile-pic">
+            <!-- <img src="" alt="Profile Picture" /> -->
+          </div>
+          <div class="new-account">
+            <h4>Profile</h4>
+            <div class="new-account-btn">
+              <i class="fa-solid fa-plus"></i>
+            Add New Account
+            </div>
+          </div>
+        </aside>
+        <div class="user-information">
+
+        </div>
+      </div>
+      <!-- End Of left side menu -->
+
+      <!-- Main Content of the page -->
+      <div class="main-content">
+        <header>
+          <h3>Dashboard</h3>
+          <nav>
+            <ul>
+              <li class="dark"><i class="fa-solid fa-moon"></i>Dark</li>
+            </ul>
+          </nav>
+        </header>
+        <div class="dashboard">
+          <div class="user-amount">
+            <div class="balance">
+              <h5>Balance</h5>
+              <h4>$0.00</h4>
+            </div>
+          </div>
+          <div class="menu">
+            <ul>
+              <li class="add"><i class="fa-solid fa-plus"></i></li>
+              <li><i class="fa-solid fa-arrows-rotate"></i></li>
+              <li><i class="fa-regular fa-file"></i></li>
+            </ul>
+          </div>
+        </div>
+        <!-- End of Dashboard Section -->
+
+        <div class="history-section">
+          <div class="history-heading">
+            <h5>History</h5>
+            <button id="add-expenditure"><i class="fa-solid fa-plus"></i> Add History</button>
+          </div>
+          <div class="transaction-history">
+            <div class="first-transaction category">
+              <h6>Category</h6>
+              <h5>Entertainment</h5>
+            </div>
+            <div class="first-transaction detalis">
+              <h6>Details</h6>
+              <h5>Morgage</h5>
+            </div>
+            <div class="first-transaction amount">
+              <h6>Amount</h6>
+              <h5>$900</h5>
+            </div>
+            <div class="first-transaction balance">
+              <h6>Balance</h6>
+              <h5>0</h5>
+            </div>
+          </div>
+        </div>
+
+        
+      </div>
+      <!-- End of main Content -->
+
+      <!-- Right side Menu-->
+      <div class="right-side-menu">
+        <div class="history">
+          <h3>Summary</h3>
+        </div>
+      </div>
+      <!-- End of Right Side menu -->
+    </div>
+    <!-- End of main Container -->
+    <script src="index.js"></script>
+  </body>
+</html>
