@@ -9,10 +9,17 @@
     src="https://kit.fontawesome.com/bd6d69ba89.js"
     crossorigin="anonymous"
   ></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
   <body>
+
+
     <!-- Main COntainer -->
     <div class="main">
+
+
       <!-- Left Side menu -->
       <div class="left-side-menu">
         <aside>
@@ -23,13 +30,11 @@
             <h4>Profile</h4>
             <div class="new-account-btn">
               <i class="fa-solid fa-plus"></i>
-            Add New Account
+              Add New Account
             </div>
           </div>
         </aside>
-        <div class="user-information">
-
-        </div>
+        <div class="user-information"></div>
       </div>
       <!-- End Of left side menu -->
 
@@ -60,10 +65,40 @@
         </div>
         <!-- End of Dashboard Section -->
 
+        <!-- History Section -->
         <div class="history-section">
+            <div class="input-container">
+              <div class="input-menu">
+              <label for="choices">Choose an option:</label>
+              <select id="choices" name="choices">
+                <option value="Entertainment">Entertainment</option>
+                <option value="Personal">Personal</option>
+                <option value="Savings">Savings</option>
+                <option value="Other">Other</option>
+              </select>
+              <br />
+              <label for="details">Details</label>
+              <input type="text" name="detalis" id="details" />
+              <br />
+              <label for="amount">Amount</label>
+              <input type="number" name="amount" id="amount" />
+              <br />
+              <label for="balance">Balance</label>
+              <input type="text" name="balance" id="balance" />
+              <br />
+              <input
+                type="button"
+                value="Submit" id="submit" onclick="addHistoryInfo()"/>
+            </div>
+            </div>
+
+
+
           <div class="history-heading">
             <h5>History</h5>
-            <button id="add-expenditure"><i class="fa-solid fa-plus"></i> Add History</button>
+            <button id="add-expenditure" onclick="submitHistoryInfo()">
+              <i class="fa-solid fa-plus"></i> Add History
+            </button>
           </div>
           <div class="transaction-history">
             <div class="first-transaction category">
@@ -84,8 +119,6 @@
             </div>
           </div>
         </div>
-
-        
       </div>
       <!-- End of main Content -->
 
