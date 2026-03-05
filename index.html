@@ -9,17 +9,16 @@
     src="https://kit.fontawesome.com/bd6d69ba89.js"
     crossorigin="anonymous"
   ></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet"
+  />
   <link rel="stylesheet" href="style.css" />
   <body>
-
-
     <!-- Main COntainer -->
     <div class="main">
-
-
       <!-- Left Side menu -->
       <div class="left-side-menu">
         <aside>
@@ -56,19 +55,25 @@
             </div>
           </div>
           <div class="menu">
-            <ul>
-              <li class="add"><i class="fa-solid fa-plus"></i></li>
-              <li><i class="fa-solid fa-arrows-rotate"></i></li>
-              <li><i class="fa-regular fa-file"></i></li>
-            </ul>
+            <div class="menu-buttons">
+              <button><i class="fa-solid fa-plus"></i></button>
+              <button><i class="fa-solid fa-arrows-rotate"></i></button>
+              <button><i class="fa-regular fa-file"></i></button>
+            </div>
+          </div>
+          <div class="balance-container">
+            <div class="add-balance-menu">
+              <input type="text" id="amount-to-add" />
+              <input type="button" value="Submit" />
+            </div>
           </div>
         </div>
         <!-- End of Dashboard Section -->
 
         <!-- History Section -->
         <div class="history-section">
-            <div class="input-container">
-              <div class="input-menu">
+          <div class="input-container">
+            <div class="input-menu">
               <label for="choices">Choose an option:</label>
               <select id="choices" name="choices">
                 <option value="Entertainment">Entertainment</option>
@@ -88,11 +93,12 @@
               <br />
               <input
                 type="button"
-                value="Submit" id="submit" onclick="addHistoryInfo()"/>
+                value="Submit"
+                id="submit"
+                onclick="addHistoryInfo()"
+              />
             </div>
-            </div>
-
-
+          </div>
 
           <div class="history-heading">
             <h5>History</h5>

@@ -75,3 +75,13 @@ function updateHistory(){
     let tag = document.createElement('h5');
 
 }
+
+// Add balance button
+
+const addBalanceBtn = document.querySelector('.add-btn');
+addBalanceBtn.addEventListener('mouseclick', function(){
+
+    const btnContainer = document.querySelector('.add-balance-menu');
+
+    btnContainer.style.display = 'flex';
+})
