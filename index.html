@@ -51,20 +51,14 @@
           <div class="user-amount">
             <div class="balance">
               <h5>Balance</h5>
-              <h4>$0.00</h4>
+              <h4 id="balance-display">$0.00</h4>
             </div>
           </div>
           <div class="menu">
             <div class="menu-buttons">
-              <button><i class="fa-solid fa-plus"></i></button>
+              <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
               <button><i class="fa-solid fa-arrows-rotate"></i></button>
               <button><i class="fa-regular fa-file"></i></button>
-            </div>
-          </div>
-          <div class="balance-container">
-            <div class="add-balance-menu">
-              <input type="text" id="amount-to-add" />
-              <input type="button" value="Submit" />
             </div>
           </div>
         </div>
@@ -72,24 +66,23 @@
 
         <!-- History Section -->
         <div class="history-section">
+
           <div class="input-container">
             <div class="input-menu">
-              <label for="choices">Choose an option:</label>
+              <label for="choices">Type of transaction:</label>
               <select id="choices" name="choices">
-                <option value="Entertainment">Entertainment</option>
                 <option value="Personal">Personal</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="adding-balance">Adding Amount</option>
                 <option value="Savings">Savings</option>
                 <option value="Other">Other</option>
               </select>
               <br />
-              <label for="details">Details</label>
+              <label for="details">Transaction Details</label>
               <input type="text" name="detalis" id="details" />
               <br />
               <label for="amount">Amount</label>
               <input type="number" name="amount" id="amount" />
-              <br />
-              <label for="balance">Balance</label>
-              <input type="text" name="balance" id="balance" />
               <br />
               <input
                 type="button"
@@ -97,6 +90,7 @@
                 id="submit"
                 onclick="addHistoryInfo()"
               />
+              <input type="button" value="Cancel" id="cancelBtn" onclick="cancel()">
             </div>
           </div>
 
@@ -109,9 +103,9 @@
           <div class="transaction-history">
             <div class="first-transaction category">
               <h6>Category</h6>
-              <h5>Entertainment</h5>
+              <h5 class="info">Entertainment</h5>
             </div>
-            <div class="first-transaction detalis">
+            <div class="first-transaction details">
               <h6>Details</h6>
               <h5>Morgage</h5>
             </div>
@@ -119,10 +113,10 @@
               <h6>Amount</h6>
               <h5>$900</h5>
             </div>
-            <div class="first-transaction balance">
+            <!-- <div class="first-transaction balance">
               <h6>Balance</h6>
               <h5>0</h5>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

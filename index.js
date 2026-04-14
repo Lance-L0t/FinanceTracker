@@ -5,83 +5,108 @@ const inputMenu = document.querySelector('.input-menu');
 
 let addvalue = 0;
 const submitBtn = document.querySelector('#add-expenditure');
-const selection = document.getElementById('choices');
-const details = document.getElementById('details');
-const amount = document.getElementById('amount');
-const balance = document.getElementById('balance');
+
 
 const category = document.querySelector('.first-transaction category');
 const detailsContainer = document.querySelector('.first-transaction details');
 const amountContainer = document.querySelector('.first-transaction amount');
-const balanceContainer = document.querySelector('.first-transaction balance');
 
-const containers = [category , detailsContainer , amountContainer , balanceContainer];
+
+const cont = document.querySelector('.input-container');
+const cancelBtn = document.getElementById('cancelBtn');
+
+// let contain = [];
+// let inputValues = [];
+// const remainingBalance = balance.value;
+
+
+
 
 let i = localStorage.getItem('state');
 
 if (i % 2 != 0) {
     body.classList.toggle('dark-mode');
 }
-darkBtn.addEventListener('click', function(){
+darkBtn.addEventListener('click', function () {
 
     i++;
     localStorage.setItem('state', i);
     console.log(i);
-    if(i % 2 == 0){
+    if (i % 2 == 0) {
         body.classList.toggle('dark-mode');
         darkBtn.innerHTML = '<i class="fa-solid fa-moon"></i> Dark';
-    }else{
+    } else {
         body.classList.toggle('dark-mode');
         darkBtn.innerHTML = '<i class="fa-solid fa-sun"></i> Light';
     }
 })
 
-function submitHistoryInfo(){
+function submitHistoryInfo() {
     inputContainer.style.display = 'block';
     inputContainer.style.opacity = '1';
 }
 
 
-function addHistoryInfo(){
+function addHistoryInfo() {
+    let selection = document.getElementById('choices');
+    let details = document.getElementById('details');
+    let amount = document.getElementById('amount');
 
-    const selectionChoice = selection.value;
-    const additionalInfo = details.value;
-    const amountSpent = amount.value;
-    const remainingBalance = balance.value;
+    let selectionChoice = selection.value;
+    let additionalInfo = details.value;
+    let amountSpent = amount.value;
 
-    const inputValues = [selectionChoice , additionalInfo, amountSpent , remainingBalance];
 
-    if (additionalInfo == '' && amountSpent == '' && remainingBalance == '') {
+    let contain = [document.querySelector('.first-transaction.category'), document.querySelector('.first-transaction.details'), document.querySelector('.first-transaction.amount')];
+
+
+    let inputValues = [selectionChoice, additionalInfo, amountSpent];
+    if (additionalInfo == '' || amountSpent == '') {
         let errorMessage = document.createElement('h6');
-        let timer = setInterval(function(){
+        console.log(selectionChoice, amountSpent, additionalInfo)
+        let timer = setInterval(function () {
             errorMessage.textContent = 'Fill all the inputs...';
             inputMenu.append(errorMessage);
         }, 1000);
 
-        setTimeout(function(){
+        setTimeout(function () {
             clearInterval(timer);
             errorMessage.remove()
         }, 5000);
-        
+
 
     } else {
         inputContainer.style.display = 'none';
-        updateHistory();
-        
-}
+        selectionChoice = '';
+        additionalInfo = '';
+        amountSpent = '';
+
+        let k = 0;
+        contain.forEach(container => {
+            
+            let tag = document.createElement('h5');
+            console.log(container, inputValues[k]);
+            tag.style.paddingBlock = '10px';
+            tag.textContent = inputValues[k];
+            container.append(tag);
+            cont.style.display = 'none';
+            k++;
+        });
+    }
 }
 
-function updateHistory(){
-    let tag = document.createElement('h5');
-
-}
 
 // Add balance button
 
 const addBalanceBtn = document.querySelector('.add-btn');
-addBalanceBtn.addEventListener('mouseclick', function(){
+addBalanceBtn.addEventListener('mouseclick', function () {
 
-    const btnContainer = document.querySelector('.add-balance-menu');
-
-    btnContainer.style.display = 'flex';
+    cont.style.display = 'block';
 })
+
+
+//Exit input container
+
+function cancel() {
+    cont.style.display = 'none';
+}
