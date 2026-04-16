@@ -41,22 +41,20 @@
       <div class="main-content">
         <header>
           <h3>Dashboard</h3>
-          <nav>
-            <ul>
-              <li class="dark"><i class="fa-solid fa-moon"></i>Dark</li>
-            </ul>
+          <nav class="dark"><i class="fa-solid fa-moon"></i>Dark
+            
           </nav>
         </header>
         <div class="dashboard">
           <div class="user-amount">
             <div class="balance">
               <h5>Balance</h5>
-              <h4 id="balance-display">$0.00</h4>
+              <h4 id="balance-display">0</h4>
             </div>
           </div>
           <div class="menu">
             <div class="menu-buttons">
-              <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
+              <button class="add-btn" onclick="topUp()"><i class="fa-solid fa-plus"></i></button>
               <button><i class="fa-solid fa-arrows-rotate"></i></button>
               <button><i class="fa-regular fa-file"></i></button>
             </div>
@@ -68,21 +66,33 @@
         <div class="history-section">
 
           <div class="input-container">
+
+            <div class="deposit-container">
+              <label for="details">Transaction Details</label>
+              <input type="text" name="detalis" id="depositInfo" autocomplete="off"/>
+              <br />
+              <label for="amount">Amount</label>
+              <input type="number" name="amount" id="depositAmount" autocomplete="off"/>
+              <br />
+              <input type="button" value="Submit" id="submit" onclick="updateBalance()" />
+              <input type="button" value="Cancel" id="submit" onclick="cancel()" />
+            </div>
+
+
             <div class="input-menu">
               <label for="choices">Type of transaction:</label>
               <select id="choices" name="choices">
                 <option value="Personal">Personal</option>
                 <option value="Entertainment">Entertainment</option>
-                <option value="adding-balance">Adding Amount</option>
                 <option value="Savings">Savings</option>
                 <option value="Other">Other</option>
               </select>
               <br />
               <label for="details">Transaction Details</label>
-              <input type="text" name="detalis" id="details" />
+              <input type="text" name="detalis" id="details" autocomplete="off"/>
               <br />
               <label for="amount">Amount</label>
-              <input type="number" name="amount" id="amount" />
+              <input type="number" name="amount" id="amount" autocomplete="off"/>
               <br />
               <input
                 type="button"
@@ -103,15 +113,14 @@
           <div class="transaction-history">
             <div class="first-transaction category">
               <h6>Category</h6>
-              <h5 class="info">Entertainment</h5>
+              
             </div>
             <div class="first-transaction details">
               <h6>Details</h6>
-              <h5>Morgage</h5>
+              
             </div>
             <div class="first-transaction amount">
               <h6>Amount</h6>
-              <h5>$900</h5>
             </div>
             <!-- <div class="first-transaction balance">
               <h6>Balance</h6>
@@ -123,11 +132,11 @@
       <!-- End of main Content -->
 
       <!-- Right side Menu-->
-      <div class="right-side-menu">
+      <!-- <div class="right-side-menu">
         <div class="history">
           <h3>Summary</h3>
         </div>
-      </div>
+      </div> -->
       <!-- End of Right Side menu -->
     </div>
     <!-- End of main Container -->

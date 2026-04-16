@@ -8,12 +8,17 @@
 body {
   background-color: #f0f2f5;
   color: #212529;
+  transition: .3s ease-in-out;
 }
 
+.dark-mode{
+  color: #f0f2f5;
+  background-color: #212529;
+}
 /* Main Layout - Using 3 Columns */
 .main {
   display: grid;
-  grid-template-columns: 280px 1fr 300px;
+  grid-template-columns: 280px 1fr auto;
   gap: 24px;
   min-height: 100vh;
   padding: 24px;
@@ -62,7 +67,9 @@ body {
   background-color: #4361ee;
   color: white;
   cursor: pointer;
-  transition: transform 0.2s, background-color 0.2s;
+  transition:
+    transform 0.2s,
+    background-color 0.2s;
 }
 
 .new-account-btn:hover {
@@ -234,10 +241,11 @@ header h3 {
 }
 
 /* INput COntainer */
-.input-container{
+.input-container {
   height: 100%;
   width: 100%;
   transition: 2s;
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -246,13 +254,35 @@ header h3 {
   backdrop-filter: blur(20px);
 }
 
-.input-menu{
+.input-menu {
   width: 500px;
   position: relative;
   z-index: 15;
   top: 20vh;
   left: 60vh;
 }
-.info{
+.info {
   padding-block: 10px;
+}
+
+.deposit-container {
+  width: 500px;
+  position: relative;
+  z-index: 16;
+  top: 20vh;
+  display: none;
+  left: 60vh;
+  background-color: white;
+  padding: 40px;
+  border-radius: 20px;
+  border: none;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+.deposit-container input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0 20px 0;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  background: #f8f9fa;
 }
