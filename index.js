@@ -21,7 +21,16 @@ const depositContainer = document.querySelector(".deposit-container");
 const depositAmount = document.getElementById("depositAmount");
 const depositInfo = document.getElementById("depositInfo");
 
+const chartCanvas = document.getElementById("chartCanvas");
+
 let balance = Number(currentBalance.value);
+if (balance) {
+  balance = Number(currentBalance.value);
+} else {
+  balance = 0.0;
+}
+
+currentBalance.textContent = `$${balance}`;
 
 let contain = [
   document.querySelector(".first-transaction.category"),
@@ -81,7 +90,7 @@ function addHistoryInfo() {
 
     if (balance >= amountSpent) {
       balance -= amountSpent;
-
+      console.log(balance);
       contain.forEach((container) => {
         let tag = document.createElement("h5");
         console.log(container, inputValues[k]);
@@ -96,6 +105,8 @@ function addHistoryInfo() {
         tag.style.color = "red";
         k++;
       });
+      currentBalance.textContent = `$${balance}`;
+
       inputContainer.style.display = "none";
       selectionChoice = "Personal";
       additionalInfo = "";
@@ -124,7 +135,7 @@ function cancel() {
 }
 
 function updateBalance() {
-  console.log(balance)
+  console.log(balance);
   balance += Number(depositAmount.value);
   cont.style.display = "none";
   currentBalance.textContent = `$${balance}`;
@@ -143,3 +154,26 @@ function updateBalance() {
     p++;
   });
 }
+
+
+// Chart COde
+// new Chart(chartCanvas, {
+//   type: "bar",
+//   data: {
+//     labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+//     datasets: [
+//       {
+//         label: "# of Votes",
+//         data: [12, 19, 3, 5, 2, 3],
+//         borderWidth: 1,
+//       },
+//     ],
+//   },
+//   options: {
+//     scales: {
+//       y: {
+//         beginAtZero: true,
+//       },
+//     },
+//   },
+// });
