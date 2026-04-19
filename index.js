@@ -23,6 +23,12 @@ const depositInfo = document.getElementById("depositInfo");
 
 const chartCanvas = document.getElementById("chartCanvas");
 
+
+const messageBox = document.querySelector('.box');
+
+
+let storedTasks = []
+
 let balance = Number(currentBalance.value);
 if (balance) {
   balance = Number(currentBalance.value);
@@ -72,6 +78,17 @@ function addHistoryInfo() {
   let additionalInfo = details.value;
   let amountSpent = amount.value;
 
+  //Storage Object  
+  //Assign the values to the object
+  const transactionHistory = {
+      name : selectionChoice,
+      details : additionalInfo,
+      amount : amountSpent
+    };
+
+    //Adding the object to array
+    storedTasks.push(transactionHistory);
+
   let inputValues = [selectionChoice, additionalInfo, amountSpent];
   if (additionalInfo == "" || amountSpent == "") {
     let errorMessage = document.createElement("h6");
@@ -108,11 +125,13 @@ function addHistoryInfo() {
       currentBalance.textContent = `$${balance}`;
 
       inputContainer.style.display = "none";
-      selectionChoice = "Personal";
-      additionalInfo = "";
+      selection.value = "Personal";
+      details.value = "";
+      amount.value = '';
+      showMessage(`$${amountSpent} has been deducted!`, 'red');
       amountSpent = "";
     } else {
-      alert("Insufficient Balance");
+      showMessage('Insufficient Balance!', 'red');
     }
   }
 }
@@ -139,6 +158,7 @@ function updateBalance() {
   balance += Number(depositAmount.value);
   cont.style.display = "none";
   currentBalance.textContent = `$${balance}`;
+  showMessage('Succesfully Deposited!', 'lime');
 
   let info = ["Deposit", depositInfo.value, String(depositAmount.value)];
   let p = 0;
@@ -155,6 +175,19 @@ function updateBalance() {
   });
 }
 
+function showMessage(message , color){
+    const toast = document.createElement('p');
+    toast.classList.add('notification');
+    toast.textContent = `${message}`;
+    toast.style.color = `${color}`;
+    messageBox.appendChild(toast);
+    toast.style.opacity = '1';
+    
+    setTimeout(function (){
+        toast.style.opacity = '0';        
+        toast.remove();
+    }, 6000);
+}
 
 // Chart COde
 // new Chart(chartCanvas, {
