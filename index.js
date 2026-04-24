@@ -23,11 +23,9 @@ const depositInfo = document.getElementById("depositInfo");
 
 const chartCanvas = document.getElementById("chartCanvas");
 
+const messageBox = document.querySelector(".box");
 
-const messageBox = document.querySelector('.box');
-
-
-let storedTasks = []
+let storedTasks = [];
 
 let balance = Number(currentBalance.value);
 if (balance) {
@@ -78,16 +76,16 @@ function addHistoryInfo() {
   let additionalInfo = details.value;
   let amountSpent = amount.value;
 
-  //Storage Object  
+  //Storage Object
   //Assign the values to the object
   const transactionHistory = {
-      name : selectionChoice,
-      details : additionalInfo,
-      amount : amountSpent
-    };
+    name: selectionChoice,
+    details: additionalInfo,
+    amount: amountSpent,
+  };
 
-    //Adding the object to array
-    storedTasks.push(transactionHistory);
+  //Adding the object to array
+  storedTasks.push(transactionHistory);
 
   let inputValues = [selectionChoice, additionalInfo, amountSpent];
   if (additionalInfo == "" || amountSpent == "") {
@@ -127,11 +125,11 @@ function addHistoryInfo() {
       inputContainer.style.display = "none";
       selection.value = "Personal";
       details.value = "";
-      amount.value = '';
-      showMessage(`$${amountSpent} has been deducted!`, 'red');
+      amount.value = "";
+      showMessage(`$${amountSpent} has been deducted!`, "red");
       amountSpent = "";
     } else {
-      showMessage('Insufficient Balance!', 'red');
+      showMessage("Insufficient Balance!", "red");
     }
   }
 }
@@ -158,7 +156,7 @@ function updateBalance() {
   balance += Number(depositAmount.value);
   cont.style.display = "none";
   currentBalance.textContent = `$${balance}`;
-  showMessage('Succesfully Deposited!', 'lime');
+  showMessage("Succesfully Deposited!", "lime");
 
   let info = ["Deposit", depositInfo.value, String(depositAmount.value)];
   let p = 0;
@@ -175,18 +173,18 @@ function updateBalance() {
   });
 }
 
-function showMessage(message , color){
-    const toast = document.createElement('p');
-    toast.classList.add('notification');
-    toast.textContent = `${message}`;
-    toast.style.color = `${color}`;
-    messageBox.appendChild(toast);
-    toast.style.opacity = '1';
-    
-    setTimeout(function (){
-        toast.style.opacity = '0';        
-        toast.remove();
-    }, 6000);
+function showMessage(message, color) {
+  const toast = document.createElement("p");
+  toast.classList.add("notification");
+  toast.textContent = `${message}`;
+  toast.style.color = `${color}`;
+  messageBox.appendChild(toast);
+  toast.style.opacity = "1";
+
+  setTimeout(function () {
+    toast.style.opacity = "0";
+    toast.remove();
+  }, 6000);
 }
 
 // Chart COde
