@@ -1,0 +1,82 @@
+.budget-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+.budget-card {
+    padding: 20px;
+}
+
+.budget-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.budget-category {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.budget-icon {
+    width: 42px;
+    height: 42px;
+
+    background: var(--soft-primary);
+    color: var(--primary);
+
+    border-radius: 11px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.budget-category strong {
+    display: block;
+    font-size: 13px;
+}
+
+.budget-category small {
+    display: block;
+    color: var(--muted);
+    font-size: 10px;
+    margin-top: 3px;
+}
+
+.budget-number {
+    margin: 20px 0 11px;
+}
+
+.budget-number strong {
+    font-size: 22px;
+}
+
+.budget-number span {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.budget-info {
+    display: flex;
+    justify-content: space-between;
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    margin-top: 9px;
+}
+
+@media(max-width: 700px) {
+
+    .budget-grid {
+        grid-template-columns: 1fr;
+    }
+
+}

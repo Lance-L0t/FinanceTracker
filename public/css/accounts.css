@@ -1,0 +1,90 @@
+.accounts-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+.account-card {
+    padding: 22px;
+
+    min-height: 160px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+}
+
+.account-icon {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 11px;
+
+    background: var(--soft-primary);
+    color: var(--primary);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.account-card h3 {
+    font-size: 14px;
+    margin-top: 15px;
+}
+
+.account-card p {
+    color: var(--muted);
+    font-size: 10px;
+    margin-top: 3px;
+}
+
+.account-card strong {
+    font-size: 19px;
+    margin-top: 12px;
+}
+
+.add-account {
+    border: 2px dashed var(--border);
+
+    background: transparent;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-account button {
+    border: none;
+
+    background: transparent;
+
+    color: var(--muted);
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 9px;
+
+    font-size: 11px;
+}
+
+.add-account i {
+    font-size: 20px;
+}
+
+@media(max-width:800px) {
+
+    .accounts-grid {
+        grid-template-columns: 1fr;
+    }
+
+}

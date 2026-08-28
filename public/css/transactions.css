@@ -1,0 +1,619 @@
+.transaction-panel {
+  padding: 20px;
+}
+
+.transaction-toolbar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
+}
+
+.search-box {
+  flex: 1;
+  min-width: 220px;
+  position: relative;
+}
+
+.search-box i {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+}
+
+.search-box input,
+.transaction-toolbar select {
+  height: 43px;
+
+  border: 1px solid var(--border);
+
+  background: var(--input);
+  color: var(--text);
+
+  border-radius: 10px;
+
+  padding: 0 13px;
+
+  outline: none;
+}
+
+.search-box input {
+  width: 100%;
+  padding-left: 39px;
+}
+
+.transaction-toolbar select {
+  min-width: 140px;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.professional-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.professional-table th {
+  text-align: left;
+
+  padding: 14px 12px;
+
+  font-size: 10px;
+
+  color: var(--muted);
+
+  text-transform: uppercase;
+
+  border-bottom: 1px solid var(--border);
+}
+
+.professional-table td {
+  padding: 15px 12px;
+text-transform: capitalize;
+  font-size: 12px;
+
+  border-bottom: 1px solid var(--border);
+}
+
+.professional-table tr:hover {
+  background: var(--hover);
+}
+
+.transaction-name {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.transaction-icon {
+  width: 38px;
+  height: 38px;
+
+  background: var(--soft-primary);
+  color: var(--primary);
+
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.transaction-name strong {
+  font-size: 12px;
+}
+
+.transaction-name small {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+  margin-top: 3px;
+}
+
+.category-badge,
+.status-badge {
+  display: inline-flex;
+
+  padding: 5px 9px;
+
+  border-radius: 7px;
+
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.category-badge {
+  background: var(--soft-primary);
+  color: var(--primary);
+}
+
+.status-badge {
+  background: var(--soft-success);
+  color: var(--success);
+}
+
+.expense-amount {
+  color: var(--danger);
+  font-weight: 800;
+}
+
+.income-amount {
+  color: var(--success);
+  font-weight: 800;
+}
+
+.danger-btn {
+  border: none;
+
+  background: var(--danger);
+  color: white;
+
+  padding: 10px 15px;
+
+  border-radius: 10px;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.delete-modal {
+  max-width: 400px;
+}
+.transaction-actions {
+    position: relative;
+}
+
+.transaction-dropdown {
+    display: none;
+
+    position: absolute;
+
+    right: 0;
+    top: 38px;
+
+    min-width: 140px;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    padding: 5px;
+
+    box-shadow: var(--shadow);
+
+    z-index: 20;
+}
+
+.transaction-dropdown.show {
+    display: block;
+}
+
+.transaction-dropdown button {
+    width: 100%;
+
+    border: none;
+
+    background: transparent;
+
+    color: var(--text);
+
+    padding: 9px;
+
+    border-radius: 7px;
+
+    text-align: left;
+
+    font-size: 11px;
+}
+
+.transaction-dropdown button:hover {
+    background: var(--hover);
+}
+
+.transaction-dropdown .delete-btn {
+    color: var(--danger);
+}
+
+
+
+
+
+
+
+
+
+/* =========================================
+   MODAL OVERLAY
+========================================= */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.45);
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    z-index: 9999;
+
+    backdrop-filter: blur(4px);
+}
+
+
+/* =========================================
+   SHOW MODAL
+========================================= */
+
+.modal-overlay.active {
+    display: flex;
+}
+
+
+/* =========================================
+   MODAL
+========================================= */
+
+.modal {
+    position: relative;
+
+    width: 100%;
+    max-width: 480px;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 22px;
+
+    padding: 28px;
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.2);
+
+    animation: modalOpen 0.2s ease;
+}
+
+
+@keyframes modalOpen {
+
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+/* =========================================
+   MODAL CLOSE BUTTON
+========================================= */
+
+.modal-close {
+    position: absolute;
+
+    top: 18px;
+    right: 18px;
+
+    width: 34px;
+    height: 34px;
+
+    border: none;
+
+    background: var(--input);
+
+    color: var(--muted);
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    transition: 0.2s ease;
+}
+
+
+.modal-close:hover {
+    background: var(--hover);
+    color: var(--text);
+}
+
+
+/* =========================================
+   MODAL HEADER
+========================================= */
+
+.modal-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin-bottom: 28px;
+
+    padding-right: 30px;
+}
+
+
+.modal-header h2 {
+    font-size: 21px;
+
+    margin-bottom: 5px;
+
+    color: var(--text);
+}
+
+
+.modal-header p {
+    color: var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================
+   MODAL ICON
+========================================= */
+
+.modal-icon {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: var(--soft-primary);
+
+    color: var(--primary);
+
+    font-size: 19px;
+}
+
+
+.money-icon {
+    background: rgba(16, 185, 129, 0.12);
+
+    color: #10b981;
+}
+
+
+/* =========================================
+   FORM
+========================================= */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+
+.form-group label {
+    display: block;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    color: var(--text);
+
+    margin-bottom: 8px;
+}
+
+
+.form-group input,
+.form-group select {
+
+    width: 100%;
+
+    height: 46px;
+
+    border: 1px solid var(--border);
+
+    background: var(--input);
+
+    color: var(--text);
+
+    border-radius: 11px;
+
+    padding: 0 14px;
+
+    font-size: 13px;
+
+    outline: none;
+
+    transition: 0.2s ease;
+}
+
+
+.form-group input::placeholder {
+    color: var(--muted);
+}
+
+
+.form-group input:focus,
+.form-group select:focus {
+
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(79, 70, 229, 0.08);
+}
+
+
+/* =========================================
+   AMOUNT INPUT
+========================================= */
+
+.amount-input {
+    position: relative;
+}
+
+
+.amount-input span {
+
+    position: absolute;
+
+    left: 14px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    pointer-events: none;
+}
+
+
+.amount-input input {
+
+    padding-left: 50px;
+}
+
+
+/* =========================================
+   MODAL ACTIONS
+========================================= */
+
+.modal-actions {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 28px;
+}
+
+
+/* =========================================
+   SECONDARY BUTTON
+========================================= */
+
+.secondary-btn {
+
+    border: 1px solid var(--border);
+
+    background: var(--input);
+
+    color: var(--text);
+
+    padding: 12px 18px;
+
+    border-radius: 11px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.secondary-btn:hover {
+
+    background: var(--hover);
+
+}
+
+
+/* =========================================
+   PRIMARY BUTTON
+========================================= */
+
+.modal-actions .primary-btn {
+
+    border: none;
+
+    background: var(--primary);
+
+    color: white;
+
+    padding: 12px 18px;
+
+    border-radius: 11px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    transition: 0.2s ease;
+}
+
+
+.modal-actions .primary-btn:hover {
+
+    transform: translateY(-1px);
+
+    filter: brightness(1.05);
+
+}
+
+
+/* =========================================
+   MOBILE MODAL
+========================================= */
+
+@media (max-width: 600px) {
+
+    .modal {
+
+        padding: 22px;
+
+        border-radius: 18px;
+
+    }
+
+    .modal-actions {
+
+        flex-direction: column-reverse;
+
+    }
+
+    .modal-actions button {
+
+        width: 100%;
+
+        justify-content: center;
+
+    }
+
+}

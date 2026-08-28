@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Savings | Chapaa Hub</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap">
+
+<link rel="stylesheet" href="/css/global.css">
+<link rel="stylesheet" href="/css/savings.css">
+
+</head>
+
+<body>
+
+<div class="app">
+
+<aside class="sidebar">
+
+<a href="/dashboard">
+
+<div class="brand">
+
+<div class="brand-icon">
+<i class="fa-solid fa-wallet"></i>
+</div>
+
+<div>
+<h2>Chapaa Hub</h2>
+<span>Personal Finance</span>
+</div>
+
+</div>
+
+</a>
+
+<div class="sidebar-section">
+
+<p class="sidebar-label">MAIN</p>
+
+<nav>
+
+<a href="/dashboard" class="nav-item">
+<i class="fa-solid fa-grid-2"></i>
+<span>Overview</span>
+</a>
+
+<a href="/dashboard/analytics" class="nav-item">
+<i class="fa-solid fa-chart-line"></i>
+<span>Analytics</span>
+</a>
+
+<a href="/dashboard/transactions" class="nav-item">
+<i class="fa-solid fa-arrow-right-arrow-left"></i>
+<span>Transactions</span>
+</a>
+
+<a href="/dashboard/budgets" class="nav-item">
+<i class="fa-solid fa-wallet"></i>
+<span>Budgets</span>
+</a>
+
+<a href="/dashboard/goals" class="nav-item">
+<i class="fa-solid fa-bullseye"></i>
+<span>Goals</span>
+</a>
+
+<a href="/dashboard/savings" class="nav-item active">
+<i class="fa-solid fa-piggy-bank"></i>
+<span>Savings</span>
+</a>
+
+</nav>
+
+</div>
+
+<div class="sidebar-section">
+
+<p class="sidebar-label">MANAGEMENT</p>
+
+<nav>
+
+<a href="/dashboard/accounts" class="nav-item">
+<i class="fa-solid fa-credit-card"></i>
+<span>Accounts</span>
+</a>
+
+<a href="/dashboard/reports" class="nav-item">
+<i class="fa-solid fa-file-invoice-dollar"></i>
+<span>Reports</span>
+</a>
+
+</nav>
+
+</div>
+
+<div class="sidebar-bottom">
+
+<a href="/dashboard/settings" class="nav-item">
+<i class="fa-solid fa-gear"></i>
+<span>Settings</span>
+</a>
+
+<a href="/auth/logout" class="nav-item">
+<i class="fa-solid fa-right-from-bracket"></i>
+<span>Log out</span>
+</a>
+
+</div>
+
+</aside>
+
+
+<main class="main-content">
+
+<header class="topbar">
+
+<div class="page-title">
+
+<h1>Savings</h1>
+
+<p>
+Build your financial safety net.
+</p>
+
+</div>
+
+<div class="topbar-actions">
+
+<!-- FUNCTION: Toggle dark/light mode -->
+<button class="theme-btn" id="theme-btn">
+<i class="fa-solid fa-moon"></i>
+</button>
+
+<!-- FUNCTION: Open savings deposit popup -->
+<button class="primary-btn"
+id="addSavingsBtn">
+<i class="fa-solid fa-plus"></i>
+Add Savings
+</button>
+
+</div>
+
+</header>
+
+
+<section class="stats-grid">
+
+<div class="card stat-card">
+
+<div class="stat-icon">
+<i class="fa-solid fa-piggy-bank"></i>
+</div>
+
+<p class="stat-label">TOTAL SAVINGS</p>
+
+<h2 class="stat-value"
+id="totalSavings">
+KSH 0
+</h2>
+
+</div>
+
+
+<div class="card stat-card">
+
+<div class="stat-icon">
+<i class="fa-solid fa-shield-halved"></i>
+</div>
+
+<p class="stat-label">EMERGENCY FUND</p>
+
+<h2 class="stat-value"
+id="emergencyFund">
+KSH 0
+</h2>
+
+</div>
+
+
+<div class="card stat-card">
+
+<div class="stat-icon">
+<i class="fa-solid fa-chart-line"></i>
+</div>
+
+<p class="stat-label">THIS MONTH</p>
+
+<h2 class="stat-value">
+KSH 0
+</h2>
+
+</div>
+
+
+<div class="card stat-card">
+
+<div class="stat-icon">
+<i class="fa-solid fa-arrow-trend-up"></i>
+</div>
+
+<p class="stat-label">SAVINGS RATE</p>
+
+<h2 class="stat-value">
+0%
+</h2>
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<div class="section-header">
+
+<div>
+
+<p class="eyebrow">SAFETY NET</p>
+
+<h2>Emergency Fund</h2>
+
+<p class="section-description">
+Money reserved for unexpected situations.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="card emergency-card">
+
+<div class="emergency-icon">
+<i class="fa-solid fa-shield-halved"></i>
+</div>
+
+<div class="emergency-content">
+
+<div class="emergency-title">
+
+<div>
+
+<h3>Emergency Fund</h3>
+
+<p>Recommended target: 3–6 months of expenses</p>
+
+</div>
+
+<strong id="emergencyPercentage">
+0%
+</strong>
+
+</div>
+
+<div class="progress-bar">
+
+<div class="progress-fill"
+id="emergencyProgress"
+style="width:0%">
+</div>
+
+</div>
+
+<div class="emergency-footer">
+
+<span id="emergencyCurrent">
+KSH 0 saved
+</span>
+
+<span id="emergencyTarget">
+Target: KSH 0
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<div class="section-header">
+
+<div>
+
+<p class="eyebrow">SAVING ACTIVITY</p>
+
+<h2>Recent Savings</h2>
+
+</div>
+
+</div>
+
+
+<div class="card savings-table">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Description</th>
+<th>Date</th>
+<th>Amount</th>
+<th></th>
+</tr>
+
+</thead>
+
+<tbody id="savingsRows">
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+</main>
+
+</div>
+
+
+<!-- ADD SAVINGS MODAL -->
+
+<div class="modal-overlay"
+id="savingsModal">
+
+<div class="modal">
+
+<div class="modal-header">
+
+<div>
+
+<h2>Add Savings</h2>
+
+<p>Move money into your savings.</p>
+
+</div>
+
+<!-- FUNCTION: Close savings popup -->
+<button class="icon-btn"
+id="closeSavingsModal">
+<i class="fa-solid fa-xmark"></i>
+</button>
+
+</div>
+
+
+<form id="savingsForm">
+
+<div class="form-group">
+
+<label>Description</label>
+
+<input id="savingsDescription"
+placeholder="e.g. Monthly savings"
+required>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Amount</label>
+
+<input id="savingsAmount"
+type="number"
+required>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Savings Type</label>
+
+<select id="savingsType">
+
+<option value="general">General Savings</option>
+<option value="emergency">Emergency Fund</option>
+
+</select>
+
+</div>
+
+
+<div class="modal-actions">
+
+<!-- FUNCTION: Cancel savings deposit -->
+<button type="button"
+class="secondary-btn">
+Cancel
+</button>
+
+<!-- FUNCTION: Save savings deposit -->
+<button type="submit"
+class="primary-btn">
+Add Savings
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+
+<script src="/js/global.js"></script>
+<script src="/js/savings.js"></script>
+
+</body>
+</html>

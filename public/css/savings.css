@@ -1,0 +1,100 @@
+.emergency-card {
+    padding: 24px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+}
+
+.emergency-icon {
+    width: 55px;
+    height: 55px;
+
+    border-radius: 15px;
+
+    background: var(--soft-success);
+    color: var(--success);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 22px;
+}
+
+.emergency-content {
+    flex: 1;
+}
+
+.emergency-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 15px;
+}
+
+.emergency-title h3 {
+    font-size: 15px;
+}
+
+.emergency-title p {
+    color: var(--muted);
+    font-size: 10px;
+    margin-top: 4px;
+}
+
+.emergency-title strong {
+    font-size: 18px;
+}
+
+.emergency-footer {
+    display: flex;
+    justify-content: space-between;
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    margin-top: 8px;
+}
+
+.savings-table {
+    padding: 8px 20px;
+    overflow-x: auto;
+}
+
+.savings-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.savings-table th {
+    text-align: left;
+
+    padding: 13px;
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.savings-table td {
+    padding: 15px 13px;
+
+    font-size: 12px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+@media(max-width:600px) {
+
+    .emergency-card {
+        align-items: flex-start;
+    }
+
+}

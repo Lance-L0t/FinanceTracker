@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Accounts | Chapaa Hub</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap">
+
+<link rel="stylesheet" href="/css/global.css">
+<link rel="stylesheet" href="/css/accounts.css">
+
+</head>
+
+<body>
+
+<div class="app">
+
+<aside class="sidebar">
+
+<a href="/dashboard">
+
+<div class="brand">
+
+<div class="brand-icon">
+<i class="fa-solid fa-wallet"></i>
+</div>
+
+<div>
+<h2>Chapaa Hub</h2>
+<span>Personal Finance</span>
+</div>
+
+</div>
+
+</a>
+
+<div class="sidebar-section">
+
+<p class="sidebar-label">MAIN</p>
+
+<nav>
+
+<a href="/dashboard" class="nav-item">
+<i class="fa-solid fa-grid-2"></i>
+<span>Overview</span>
+</a>
+
+<a href="/dashboard/analytics" class="nav-item">
+<i class="fa-solid fa-chart-line"></i>
+<span>Analytics</span>
+</a>
+
+<a href="/dashboard/transactions" class="nav-item">
+<i class="fa-solid fa-arrow-right-arrow-left"></i>
+<span>Transactions</span>
+</a>
+
+<a href="/dashboard/budgets" class="nav-item">
+<i class="fa-solid fa-wallet"></i>
+<span>Budgets</span>
+</a>
+
+<a href="/dashboard/goals" class="nav-item">
+<i class="fa-solid fa-bullseye"></i>
+<span>Goals</span>
+</a>
+
+<a href="/dashboard/savings" class="nav-item">
+<i class="fa-solid fa-piggy-bank"></i>
+<span>Savings</span>
+</a>
+
+</nav>
+
+</div>
+
+<div class="sidebar-section">
+
+<p class="sidebar-label">MANAGEMENT</p>
+
+<nav>
+
+<a href="/dashboard/accounts" class="nav-item active">
+<i class="fa-solid fa-credit-card"></i>
+<span>Accounts</span>
+</a>
+
+<a href="/dashboard/reports" class="nav-item">
+<i class="fa-solid fa-file-invoice-dollar"></i>
+<span>Reports</span>
+</a>
+
+</nav>
+
+</div>
+
+<div class="sidebar-bottom">
+
+<a href="/dashboard/settings" class="nav-item">
+<i class="fa-solid fa-gear"></i>
+<span>Settings</span>
+</a>
+
+<a href="/auth/logout" class="nav-item">
+<i class="fa-solid fa-right-from-bracket"></i>
+<span>Log out</span>
+</a>
+
+</div>
+
+</aside>
+
+
+<main class="main-content">
+
+<header class="topbar">
+
+<div class="page-title">
+
+<h1>Accounts</h1>
+
+<p>
+Manage the accounts you use to manage your money.
+</p>
+
+</div>
+
+<div class="topbar-actions">
+
+<!-- FUNCTION: Toggle dark/light mode -->
+<button class="theme-btn" id="theme-btn">
+<i class="fa-solid fa-moon"></i>
+</button>
+
+<!-- FUNCTION: Open account creation popup -->
+<button class="primary-btn"
+id="newAccountBtn">
+<i class="fa-solid fa-plus"></i>
+Add Account
+</button>
+
+</div>
+
+</header>
+
+
+<section class="stats-grid">
+
+<div class="card stat-card">
+
+<div class="stat-icon">
+<i class="fa-solid fa-wallet"></i>
+</div>
+
+<p class="stat-label">TOTAL BALANCE</p>
+
+<h2 class="stat-value">
+KSH 0
+</h2>
+
+</div>
+
+
+<div class="card stat-card">
+
+<div class="stat-icon">
+<i class="fa-solid fa-credit-card"></i>
+</div>
+
+<p class="stat-label">ACTIVE ACCOUNTS</p>
+
+<h2 class="stat-value">
+1
+</h2>
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<div class="section-header">
+
+<div>
+
+<p class="eyebrow">YOUR MONEY</p>
+
+<h2>Accounts</h2>
+
+</div>
+
+</div>
+
+
+<div class="accounts-grid">
+
+
+<div class="card account-card">
+
+<div class="account-icon">
+
+<i class="fa-solid fa-wallet"></i>
+
+</div>
+
+<div>
+
+<h3>Main Wallet</h3>
+
+<p>Cash balance</p>
+
+</div>
+
+<strong>
+KSH 0
+</strong>
+
+</div>
+
+
+<div class="card account-card add-account">
+
+<!-- FUNCTION: Open account creation popup -->
+<button id="addAccountCard">
+
+<i class="fa-solid fa-plus"></i>
+
+<span>Add another account</span>
+
+</button>
+
+</div>
+
+
+</div>
+
+</section>
+
+</main>
+
+</div>
+
+
+<!-- ADD ACCOUNT MODAL -->
+
+<div class="modal-overlay"
+id="accountModal">
+
+<div class="modal">
+
+<div class="modal-header">
+
+<div>
+
+<h2>Add Account</h2>
+
+<p>Add another place where you keep money.</p>
+
+</div>
+
+<!-- FUNCTION: Close account popup -->
+<button class="icon-btn"
+id="closeAccountModal">
+<i class="fa-solid fa-xmark"></i>
+</button>
+
+</div>
+
+
+<form>
+
+<div class="form-group">
+
+<label>Account Name</label>
+
+<input placeholder="e.g. M-Pesa">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Account Type</label>
+
+<select>
+
+<option>Cash</option>
+<option>Mobile Money</option>
+<option>Bank</option>
+<option>Credit</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Current Balance</label>
+
+<input type="number">
+
+</div>
+
+
+<div class="modal-actions">
+
+<!-- FUNCTION: Cancel account creation -->
+<button type="button"
+class="secondary-btn">
+Cancel
+</button>
+
+<!-- FUNCTION: Save account -->
+<button class="primary-btn">
+Add Account
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+
+<script src="/js/global.js"></script>
+<script src="/js/accounts.js"></script>
+
+</body>
+</html>

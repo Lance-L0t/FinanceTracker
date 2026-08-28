@@ -1,0 +1,39 @@
+.dashboard-table {
+text-transform: capitalize;
+  padding: 8px 20px;
+}
+
+.dashboard-table table {
+  width: 100%;
+
+  border-collapse: collapse;
+}
+
+.dashboard-table th {
+  text-align: left;
+  padding: 14px 10px;
+
+  color: var(--muted);
+
+  font-size: 10px;
+  text-transform: uppercase;
+
+  border-bottom: 1px solid var(--border);
+}
+
+.dashboard-table td {
+  padding: 15px 10px;
+  text-transform: capitalize;
+
+  border-bottom: 1px solid var(--border);
+
+  font-size: 12px;
+}
+
+.dashboard-table tr:last-child td {
+  border-bottom: none;
+}
+.username{
+  text-transform: capitalize;
+  color: rgb(51, 51, 234);
+}

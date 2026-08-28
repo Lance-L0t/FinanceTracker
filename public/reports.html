@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Reports | Chapaa Hub</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap">
+
+<link rel="stylesheet" href="/css/global.css">
+<link rel="stylesheet" href="/css/reports.css">
+
+</head>
+
+<body>
+
+<div class="app">
+
+<aside class="sidebar">
+
+<a href="/dashboard">
+
+<div class="brand">
+
+<div class="brand-icon">
+<i class="fa-solid fa-wallet"></i>
+</div>
+
+<div>
+<h2>Chapaa Hub</h2>
+<span>Personal Finance</span>
+</div>
+
+</div>
+
+</a>
+
+<div class="sidebar-section">
+
+<p class="sidebar-label">MAIN</p>
+
+<nav>
+
+<a href="/dashboard" class="nav-item">
+<i class="fa-solid fa-grid-2"></i>
+<span>Overview</span>
+</a>
+
+<a href="/dashboard/analytics" class="nav-item">
+<i class="fa-solid fa-chart-line"></i>
+<span>Analytics</span>
+</a>
+
+<a href="/dashboard/transactions" class="nav-item">
+<i class="fa-solid fa-arrow-right-arrow-left"></i>
+<span>Transactions</span>
+</a>
+
+<a href="/dashboard/budgets" class="nav-item">
+<i class="fa-solid fa-wallet"></i>
+<span>Budgets</span>
+</a>
+
+<a href="/dashboard/goals" class="nav-item">
+<i class="fa-solid fa-bullseye"></i>
+<span>Goals</span>
+</a>
+
+<a href="/dashboard/savings" class="nav-item">
+<i class="fa-solid fa-piggy-bank"></i>
+<span>Savings</span>
+</a>
+
+</nav>
+
+</div>
+
+<div class="sidebar-section">
+
+<p class="sidebar-label">MANAGEMENT</p>
+
+<nav>
+
+<a href="/dashboard/accounts" class="nav-item">
+<i class="fa-solid fa-credit-card"></i>
+<span>Accounts</span>
+</a>
+
+<a href="/dashboard/reports" class="nav-item active">
+<i class="fa-solid fa-file-invoice-dollar"></i>
+<span>Reports</span>
+</a>
+
+</nav>
+
+</div>
+
+<div class="sidebar-bottom">
+
+<a href="/dashboard/settings" class="nav-item">
+<i class="fa-solid fa-gear"></i>
+<span>Settings</span>
+</a>
+
+<a href="/auth/logout" class="nav-item">
+<i class="fa-solid fa-right-from-bracket"></i>
+<span>Log out</span>
+</a>
+
+</div>
+
+</aside>
+
+
+<main class="main-content">
+
+<header class="topbar">
+
+<div class="page-title">
+
+<h1>Reports</h1>
+
+<p>
+Generate useful summaries of your finances.
+</p>
+
+</div>
+
+<div class="topbar-actions">
+
+<!-- FUNCTION: Toggle dark/light mode -->
+<button class="theme-btn" id="theme-btn">
+<i class="fa-solid fa-moon"></i>
+</button>
+
+</div>
+
+</header>
+
+
+<section class="section">
+
+<div class="section-header">
+
+<div>
+
+<p class="eyebrow">REPORT CENTER</p>
+
+<h2>Financial Reports</h2>
+
+<p class="section-description">
+Choose a report to generate.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="reports-grid">
+
+
+<div class="card report-card">
+
+<div class="report-icon">
+<i class="fa-solid fa-calendar-days"></i>
+</div>
+
+<h3>Monthly Report</h3>
+
+<p>
+Income, expenses, savings and spending breakdown.
+</p>
+
+<!-- FUNCTION: Generate monthly report -->
+<button class="primary-btn report-btn">
+Generate Report
+</button>
+
+</div>
+
+
+<div class="card report-card">
+
+<div class="report-icon">
+<i class="fa-solid fa-chart-pie"></i>
+</div>
+
+<h3>Spending Report</h3>
+
+<p>
+See exactly where your money is going.
+</p>
+
+<!-- FUNCTION: Generate spending report -->
+<button class="primary-btn report-btn">
+Generate Report
+</button>
+
+</div>
+
+
+<div class="card report-card">
+
+<div class="report-icon">
+<i class="fa-solid fa-piggy-bank"></i>
+</div>
+
+<h3>Savings Report</h3>
+
+<p>
+Track your savings progress over time.
+</p>
+
+<!-- FUNCTION: Generate savings report -->
+<button class="primary-btn report-btn">
+Generate Report
+</button>
+
+</div>
+
+
+<div class="card report-card">
+
+<div class="report-icon">
+<i class="fa-solid fa-file-lines"></i>
+</div>
+
+<h3>Transaction Report</h3>
+
+<p>
+Export your complete transaction history.
+</p>
+
+<!-- FUNCTION: Generate transaction report -->
+<button class="primary-btn report-btn">
+Generate Report
+</button>
+
+</div>
+
+
+</div>
+
+</section>
+
+</main>
+
+</div>
+
+
+<script src="/js/global.js"></script>
+<script src="/js/reports.js"></script>
+
+</body>
+</html>
