@@ -1,2 +1,194 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Chapaa Hub</title><link rel="stylesheet" href="/css/global.css"><style>body{display:grid;place-items:center;padding:20px;background:radial-gradient(circle at 15% 15%,#ffd0a8 0,transparent 30%),radial-gradient(circle at 90% 80%,#b9d9ff 0,transparent 32%),var(--bg)}.auth{width:min(940px,100%);display:grid;grid-template-columns:1fr 1fr;background:var(--surface);border:1px solid var(--border);border-radius:28px;overflow:hidden;box-shadow:var(--shadow-lg)}.auth-art{padding:42px;background:linear-gradient(145deg,#f36f45,#ffb36e);color:#fff;min-height:560px;display:flex;flex-direction:column;justify-content:space-between}.auth-art h1{font-family:'Bricolage Grotesque';font-size:48px;line-height:.9;max-width:340px}.auth-art p{font-size:11px;max-width:300px;line-height:1.6;opacity:.88}.auth-bubble{font-size:10px;background:rgba(255,255,255,.18);padding:12px;border:1px solid rgba(255,255,255,.25);border-radius:14px;width:max-content}.auth-form{padding:42px}.tabs{display:flex;gap:8px;margin-bottom:25px}.tab{flex:1;border:1px solid var(--border);background:var(--surface-2);color:var(--muted);padding:11px;border-radius:10px;font-size:10px;font-weight:800}.tab.active{background:var(--primary-soft);color:var(--primary);border-color:var(--primary)}.auth-form h2{font-family:'Bricolage Grotesque';font-size:27px}.auth-form>p{color:var(--muted);font-size:10px;margin:5px 0 20px}.auth-pane{display:none}.auth-pane.active{display:block}.auth-pane .field{margin-bottom:12px}.auth-submit{width:100%;margin-top:8px}.auth-message{font-size:9px;color:var(--red);min-height:16px;margin-top:9px}@media(max-width:760px){.auth{grid-template-columns:1fr}.auth-art{display:none}.auth-form{padding:28px}}
-</style></head><body><div class="auth"><section class="auth-art"><div><div class="brand" style="padding:0 0 40px"><div class="brand-icon"><i class="fa-solid fa-wallet"></i></div><div><h2 style="font-family:'Bricolage Grotesque'">Chapaa Hub</h2><span style="color:rgba(255,255,255,.75)">Money, but make it simple.</span></div></div><h1>Make your money make sense.</h1><p style="margin-top:18px">Track spending, build budgets, chase goals and understand your habits without turning finance into homework.</p></div><div class="auth-bubble">✨ Small steps. Big future.</div></section><section class="auth-form"><div class="tabs"><button class="tab active" data-tab="login">Log in</button><button class="tab" data-tab="register">Create account</button></div><div id="login-pane" class="auth-pane active"><h2>Welcome back</h2><p>Pick up where you left off.</p><form id="login-form"><div class="field"><label>EMAIL</label><input name="email" type="email" required></div><div class="field"><label>PASSWORD</label><input name="password" type="password" required></div><!-- BUTTON: Authenticate and open dashboard --><button class="primary-btn auth-submit">Log in</button><div class="auth-message" id="login-msg"></div></form></div><div id="register-pane" class="auth-pane"><h2>Start fresh</h2><p>Create your personal finance workspace.</p><form id="register-form"><div class="field"><label>USERNAME</label><input name="username" required></div><div class="field"><label>EMAIL</label><input name="email" type="email" required></div><div class="field"><label>PASSWORD</label><input name="password" type="password" minlength="6" required></div><!-- BUTTON: Create a new Chapaa Hub account --><button class="primary-btn auth-submit">Create account</button><div class="auth-message" id="register-msg"></div></form></div></section></div><script src="/js/login.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Chapaa Hub</title>
+    <link rel="stylesheet" href="/css/global.css" />
+    <style>
+      body {
+        display: grid;
+        place-items: center;
+        padding: 20px;
+        background:
+          radial-gradient(circle at 15% 15%, #ffd0a8 0, transparent 30%),
+          radial-gradient(circle at 90% 80%, #b9d9ff 0, transparent 32%),
+          var(--bg);
+      }
+      .auth {
+        width: min(940px, 100%);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 28px;
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+      }
+      .auth-art {
+        padding: 42px;
+        background: linear-gradient(145deg, #f36f45, #ffb36e);
+        color: #fff;
+        min-height: 560px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .auth-art h1 {
+        font-family: "Bricolage Grotesque";
+        font-size: 48px;
+        line-height: 0.9;
+        max-width: 340px;
+      }
+      .auth-art p {
+        font-size: 11px;
+        max-width: 300px;
+        line-height: 1.6;
+        opacity: 0.88;
+      }
+      .auth-bubble {
+        font-size: 10px;
+        background: rgba(255, 255, 255, 0.18);
+        padding: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: 14px;
+        width: max-content;
+      }
+      .auth-form {
+        padding: 42px;
+      }
+      .tabs {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 25px;
+      }
+      .tab {
+        flex: 1;
+        border: 1px solid var(--border);
+        background: var(--surface-2);
+        color: var(--muted);
+        padding: 11px;
+        border-radius: 10px;
+        font-size: 10px;
+        font-weight: 800;
+      }
+      .tab.active {
+        background: var(--primary-soft);
+        color: var(--primary);
+        border-color: var(--primary);
+      }
+      .auth-form h2 {
+        font-family: "Bricolage Grotesque";
+        font-size: 27px;
+      }
+      .auth-form > p {
+        color: var(--muted);
+        font-size: 10px;
+        margin: 5px 0 20px;
+      }
+      .auth-pane {
+        display: none;
+      }
+      .auth-pane.active {
+        display: block;
+      }
+      .auth-pane .field {
+        margin-bottom: 12px;
+      }
+      .auth-submit {
+        width: 100%;
+        margin-top: 8px;
+      }
+      .auth-message {
+        font-size: 9px;
+        color: var(--red);
+        min-height: 16px;
+        margin-top: 9px;
+      }
+      @media (max-width: 760px) {
+        .auth {
+          grid-template-columns: 1fr;
+        }
+        .auth-art {
+          display: none;
+        }
+        .auth-form {
+          padding: 28px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="auth">
+      <section class="auth-art">
+        <div>
+          <div class="brand" style="padding: 0 0 40px">
+            <div class="brand-icon"><i class="fa-solid fa-wallet"></i></div>
+            <div>
+              <h2 style="font-family: &quot;Bricolage Grotesque&quot;">
+                Chapaa Hub
+              </h2>
+              <span style="color: rgba(255, 255, 255, 0.75)"
+                >Money, but make it simple.</span
+              >
+            </div>
+          </div>
+          <h1>Make your money make sense.</h1>
+          <p style="margin-top: 18px">
+            Track spending, build budgets, chase goals and understand your
+            habits without turning finance into homework.
+          </p>
+        </div>
+        <div class="auth-bubble">✨ Small steps. Big future.</div>
+      </section>
+      <section class="auth-form">
+        <div class="tabs">
+          <button class="tab active" data-tab="login">Log in</button
+          ><button class="tab" data-tab="register">Create account</button>
+        </div>
+        <div id="login-pane" class="auth-pane active">
+          <h2>Welcome back</h2>
+          <p>Pick up where you left off.</p>
+          <form id="login-form">
+            <div class="field">
+              <label>EMAIL</label><input name="email" type="email" required />
+            </div>
+            <div class="field">
+              <label>PASSWORD</label
+              ><input name="password" type="password" required />
+            </div>
+            <!-- BUTTON: Authenticate and open dashboard --><button
+              class="primary-btn auth-submit"
+            >
+              Log in
+            </button>
+            <div class="auth-message" id="login-msg"></div>
+          </form>
+        </div>
+        <div id="register-pane" class="auth-pane">
+          <h2>Start fresh</h2>
+          <p>Create your personal finance workspace.</p>
+          <form id="register-form">
+            <div class="field">
+              <label>USERNAME</label><input name="username" required />
+            </div>
+            <div class="field">
+              <label>EMAIL</label><input name="email" type="email" required />
+            </div>
+            <div class="field">
+              <label>PASSWORD</label
+              ><input name="password" type="password" minlength="6" required />
+            </div>
+            <!-- BUTTON: Create a new Chapaa Hub account --><button
+              class="primary-btn auth-submit"
+            >
+              Create account
+            </button>
+            <div class="auth-message" id="register-msg"></div>
+          </form>
+        </div>
+      </section>
+    </div>
+    <script src="/js/login.js"></script>
+  </body>
+</html>
