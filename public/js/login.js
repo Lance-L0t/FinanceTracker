@@ -1,13 +1,1 @@
-function switchTab(tabName) {
-  // Remove 'active' class from all forms and tab buttons
-  document
-    .querySelectorAll(".form-content")
-    .forEach((form) => form.classList.remove("active"));
-  document
-    .querySelectorAll(".tab-btn")
-    .forEach((btn) => btn.classList.remove("active"));
-
-  // Add 'active' class to selected form and tab button
-  document.getElementById(`form-${tabName}`).classList.add("active");
-  event.currentTarget.classList.add("active");
-}
+document.addEventListener('DOMContentLoaded',()=>{$$('.tab').forEach(b=>b.addEventListener('click',()=>{$$('.tab').forEach(x=>x.classList.remove('active'));$$('.auth-pane').forEach(x=>x.classList.remove('active'));b.classList.add('active');$('#'+b.dataset.tab+'-pane').classList.add('active')}));$('#login-form').addEventListener('submit',async e=>{e.preventDefault();const msg=$('#login-msg');msg.textContent='';try{const d=Object.fromEntries(new FormData(e.target));const r=await fetch('/auth/login',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(d)});if(!r.ok){const x=await r.json();throw new Error(x.error||'Login failed')}location.href='/dashboard'}catch(err){msg.textContent=err.message}});$('#register-form').addEventListener('submit',async e=>{e.preventDefault();const msg=$('#register-msg');msg.textContent='';try{const d=Object.fromEntries(new FormData(e.target));const r=await fetch('/auth/register',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(d)});if(!r.ok){const x=await r.json();throw new Error(x.error||'Registration failed')}location.href='/dashboard'}catch(err){msg.textContent=err.message}})});

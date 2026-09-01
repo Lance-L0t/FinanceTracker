@@ -1,0 +1,1 @@
+const router=require('express').Router();const c=require('../controllers/reportController');const {authenticate}=require('../middleware/auth');router.get('/monthly',authenticate,c.monthly);router.get('/csv',authenticate,c.csv);module.exports=router;

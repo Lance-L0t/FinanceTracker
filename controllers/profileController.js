@@ -1,0 +1,5 @@
+const bcrypt=require('bcrypt');const users=require('../models/userModel');const {cleanString}=require('../utils/validation');
+async function me(req,res){const user=await users.findById(req.user.id);res.json(user);}
+async function update(req,res){const username=cleanString(req.body.username,'Username',100),email=cleanString(req.body.email,'Email',190).toLowerCase();const existing=await users.findByEmail(email);if(existing&&existing.id!==req.user.id)return res.status(409).json({error:'Email already belongs to another account'});res.json(await users.updateProfile(req.user.id,username,email));}
+async function password(req,res){if(String(req.body.newPassword||'').length<6)return res.status(400).json({error:'New password must be at least 6 characters'});const user=await users.findById(req.user.id);const full=await users.findByEmail(user.email);if(!(await bcrypt.compare(String(req.body.currentPassword||''),full.password)))return res.status(401).json({error:'Current password is incorrect'});await users.updatePassword(req.user.id,await bcrypt.hash(req.body.newPassword,12));res.json({message:'Password updated'});}
+module.exports={me,update,password};

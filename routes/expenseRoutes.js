@@ -1,0 +1,12 @@
+const router=require('express').Router();const c=require('../controllers/expenseController');const {authenticate}=require('../middleware/auth');
+router.get('/',authenticate,c.getAllTransactions);
+router.get('/user',authenticate,c.getUserBalance);
+router.get('/income',authenticate,c.getIncome);
+router.get('/total',authenticate,c.getExpenseTotal);
+router.get('/:value',authenticate,(req,res,next)=>{if(/^\d+$/.test(req.params.value))return c.getTransaction({...req,params:{id:req.params.value}},res,next);return c.filterTransaction({...req,params:{category:req.params.value}},res,next);});
+router.post('/topup',authenticate,c.topUpBalance);
+router.post('/newExpense',authenticate,c.addNewTransaction);
+router.post('/deduct',authenticate,c.deductBalance);
+router.put('/:id',authenticate,c.updateTransaction);
+router.delete('/:id',authenticate,c.deleteTransaction);
+module.exports=router;

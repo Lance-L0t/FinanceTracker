@@ -1,0 +1,2 @@
+const router=require('express').Router();const c=require('../controllers/goalController');const {authenticate}=require('../middleware/auth');
+router.get('/',authenticate,c.list);router.post('/',authenticate,c.create);router.get('/:id',authenticate,c.get);router.put('/:id',authenticate,c.update);router.delete('/:id',authenticate,c.remove);router.post('/:id/contribute',authenticate,c.contribute);router.post('/:id/withdraw',authenticate,c.withdraw);router.get('/:id/contributions',authenticate,c.history);module.exports=router;

@@ -1,0 +1,8 @@
+-- Use this as a checklist when upgrading an older Chapaa Hub database.
+-- BACK UP YOUR DATABASE FIRST.
+-- The clean schema in schema.sql is the recommended target.
+-- New tables introduced by this version:
+-- goals, goal_contributions, budgets, recurring_transactions, notifications, user_settings.
+-- Existing core tables expected:
+-- users(id, username, email, password, balance, currency, ...)
+-- expenses(id, user_id, description, amount, category, date, ...)

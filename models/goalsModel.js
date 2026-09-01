@@ -3,6 +3,7 @@ const db = require('../config/database');
 // Add new goal
 // Get all goals
 // Delete Goal
+
 // Update goal - To be added later
 
 async function getAllGoals(userId) {

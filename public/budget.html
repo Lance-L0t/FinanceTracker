@@ -1,337 +1,239 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Budgets | Chapaa Hub</title>
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-<link rel="stylesheet"
-href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap">
-
-<link rel="stylesheet" href="/css/global.css">
-<link rel="stylesheet" href="/css/budgets.css">
-
-</head>
-
-<body>
-
-<div class="app">
-
-<aside class="sidebar">
-
-<a href="/dashboard">
-
-<div class="brand">
-
-<div class="brand-icon">
-<i class="fa-solid fa-wallet"></i>
-</div>
-
-<div>
-<h2>Chapaa Hub</h2>
-<span>Personal Finance</span>
-</div>
-
-</div>
-
-</a>
-
-<div class="sidebar-section">
-
-<p class="sidebar-label">MAIN</p>
-
-<nav>
-
-<a href="/dashboard" class="nav-item">
-<i class="fa-solid fa-grid-2"></i>
-<span>Overview</span>
-</a>
-
-<a href="/dashboard/analytics" class="nav-item">
-<i class="fa-solid fa-chart-line"></i>
-<span>Analytics</span>
-</a>
-
-<a href="/dashboard/transactions" class="nav-item">
-<i class="fa-solid fa-arrow-right-arrow-left"></i>
-<span>Transactions</span>
-</a>
-
-<a href="/dashboard/budgets" class="nav-item active">
-<i class="fa-solid fa-wallet"></i>
-<span>Budgets</span>
-</a>
-
-<a href="/dashboard/goals" class="nav-item">
-<i class="fa-solid fa-bullseye"></i>
-<span>Goals</span>
-</a>
-
-<a href="/dashboard/savings" class="nav-item">
-<i class="fa-solid fa-piggy-bank"></i>
-<span>Savings</span>
-</a>
-
-</nav>
-
-</div>
-
-<div class="sidebar-section">
-
-<p class="sidebar-label">MANAGEMENT</p>
-
-<nav>
-
-<a href="/dashboard/accounts" class="nav-item">
-<i class="fa-solid fa-credit-card"></i>
-<span>Accounts</span>
-</a>
-
-<a href="/dashboard/reports" class="nav-item">
-<i class="fa-solid fa-file-invoice-dollar"></i>
-<span>Reports</span>
-</a>
-
-</nav>
-
-</div>
-
-<div class="sidebar-bottom">
-
-<a href="/dashboard/settings" class="nav-item">
-<i class="fa-solid fa-gear"></i>
-<span>Settings</span>
-</a>
-
-<a href="/auth/logout" class="nav-item">
-<i class="fa-solid fa-right-from-bracket"></i>
-<span>Log out</span>
-</a>
-
-</div>
-
-</aside>
-
-
-<main class="main-content">
-
-<header class="topbar">
-
-<div class="page-title">
-
-<h1>Budgets</h1>
-
-<p>
-Plan your spending and stay within your limits.
-</p>
-
-</div>
-
-<div class="topbar-actions">
-
-<!-- FUNCTION: Toggle dark/light mode -->
-<button class="theme-btn" id="theme-btn">
-<i class="fa-solid fa-moon"></i>
-</button>
-
-<!-- FUNCTION: Open budget creation popup -->
-<button class="primary-btn" id="createBudgetBtn">
-<i class="fa-solid fa-plus"></i>
-Create Budget
-</button>
-
-</div>
-
-</header>
-
-
-<section class="stats-grid">
-
-<div class="card stat-card">
-
-<div class="stat-icon">
-<i class="fa-solid fa-wallet"></i>
-</div>
-
-<p class="stat-label">MONTHLY BUDGET</p>
-
-<h2 class="stat-value"
-id="monthlyBudget">
-KSH 0
-</h2>
-
-</div>
-
-
-<div class="card stat-card">
-
-<div class="stat-icon">
-<i class="fa-solid fa-arrow-trend-down"></i>
-</div>
-
-<p class="stat-label">SPENT</p>
-
-<h2 class="stat-value"
-id="budgetSpent">
-KSH 0
-</h2>
-
-</div>
-
-
-<div class="card stat-card">
-
-<div class="stat-icon">
-<i class="fa-solid fa-coins"></i>
-</div>
-
-<p class="stat-label">REMAINING</p>
-
-<h2 class="stat-value"
-id="budgetRemaining">
-KSH 0
-</h2>
-
-</div>
-
-
-<div class="card stat-card">
-
-<div class="stat-icon">
-<i class="fa-solid fa-chart-pie"></i>
-</div>
-
-<p class="stat-label">BUDGET USAGE</p>
-
-<h2 class="stat-value"
-id="budgetPercentage">
-0%
-</h2>
-
-</div>
-
-</section>
-
-
-<section class="section">
-
-<div class="section-header">
-
-<div>
-
-<p class="eyebrow">SPENDING PLAN</p>
-
-<h2>Category Budgets</h2>
-
-<p class="section-description">
-Monitor your spending by category.
-</p>
-
-</div>
-
-</div>
-
-
-<div class="budget-grid" id="budgetGrid">
-
-</div>
-
-</section>
-
-</main>
-
-</div>
-
-
-<!-- CREATE BUDGET MODAL -->
-
-<div class="modal-overlay"
-id="budgetModal">
-
-<div class="modal">
-
-<div class="modal-header">
-
-<div>
-
-<h2>Create Budget</h2>
-
-<p>Set a spending limit.</p>
-
-</div>
-
-<!-- FUNCTION: Close budget popup -->
-<button class="icon-btn"
-id="closeBudgetModal">
-<i class="fa-solid fa-xmark"></i>
-</button>
-
-</div>
-
-
-<form id="budgetForm">
-
-<div class="form-group">
-
-<label>Category</label>
-
-<select id="budgetCategory">
-
-<option>Food</option>
-<option>Transport</option>
-<option>Shopping</option>
-<option>Bills</option>
-<option>Entertainment</option>
-<option>Personal</option>
-
-</select>
-
-</div>
-
-
-<div class="form-group">
-
-<label>Monthly Limit</label>
-
-<input type="number"
-id="budgetAmount"
-required>
-
-</div>
-
-
-<div class="modal-actions">
-
-<!-- FUNCTION: Cancel budget creation -->
-<button type="button"
-class="secondary-btn"
-id="cancelBudget">
-Cancel
-</button>
-
-<!-- FUNCTION: Save budget -->
-<button type="submit"
-class="primary-btn">
-Create Budget
-</button>
-
-</div>
-
-</form>
-
-</div>
-
-</div>
-
-
-<script src="/js/global.js"></script>
-<script src="/js/budget.js"></script>
-
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Budgets | Chapaa Hub</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
+    />
+
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/budgets.css" />
+  </head>
+
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <a href="/dashboard">
+          <div class="brand">
+            <div class="brand-icon">
+              <i class="fa-solid fa-wallet"></i>
+            </div>
+
+            <div>
+              <h2>Chapaa Hub</h2>
+              <span>Personal Finance</span>
+            </div>
+          </div>
+        </a>
+
+        <div class="sidebar-section">
+          <p class="sidebar-label">MAIN</p>
+
+          <nav>
+            <a href="/dashboard" class="nav-item">
+              <i class="fa-solid fa-grid-2"></i>
+              <span>Overview</span>
+            </a>
+
+            <a href="/dashboard/analytics" class="nav-item">
+              <i class="fa-solid fa-chart-line"></i>
+              <span>Analytics</span>
+            </a>
+
+            <a href="/dashboard/transactions" class="nav-item">
+              <i class="fa-solid fa-arrow-right-arrow-left"></i>
+              <span>Transactions</span>
+            </a>
+
+            <a href="/dashboard/budgets" class="nav-item active">
+              <i class="fa-solid fa-wallet"></i>
+              <span>Budgets</span>
+            </a>
+
+            <a href="/dashboard/goals" class="nav-item">
+              <i class="fa-solid fa-bullseye"></i>
+              <span>Goals</span>
+            </a>
+
+            <a href="/dashboard/savings" class="nav-item">
+              <i class="fa-solid fa-piggy-bank"></i>
+              <span>Savings</span>
+            </a>
+          </nav>
+        </div>
+
+        <div class="sidebar-section">
+          <p class="sidebar-label">MANAGEMENT</p>
+
+          <nav>
+            <a href="/dashboard/accounts" class="nav-item">
+              <i class="fa-solid fa-credit-card"></i>
+              <span>Accounts</span>
+            </a>
+
+            <a href="/dashboard/reports" class="nav-item">
+              <i class="fa-solid fa-file-invoice-dollar"></i>
+              <span>Reports</span>
+            </a>
+          </nav>
+        </div>
+
+        <div class="sidebar-bottom">
+          <a href="/dashboard/settings" class="nav-item">
+            <i class="fa-solid fa-gear"></i>
+            <span>Settings</span>
+          </a>
+
+          <a href="/auth/logout" class="nav-item">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Log out</span>
+          </a>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div class="page-title">
+            <h1>Budgets</h1>
+
+            <p>Plan your spending and stay within your limits.</p>
+          </div>
+
+          <div class="topbar-actions">
+            <!-- FUNCTION: Toggle dark/light mode -->
+            <button class="theme-btn" id="theme-btn">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+
+            <!-- FUNCTION: Open budget creation popup -->
+            <button class="primary-btn" id="createBudgetBtn">
+              <i class="fa-solid fa-plus"></i>
+              Create Budget
+            </button>
+          </div>
+        </header>
+
+        <section class="stats-grid">
+          <div class="card stat-card">
+            <div class="stat-icon">
+              <i class="fa-solid fa-wallet"></i>
+            </div>
+
+            <p class="stat-label">MONTHLY BUDGET</p>
+
+            <h2 class="stat-value" id="monthlyBudget">KSH 0</h2>
+          </div>
+
+          <div class="card stat-card">
+            <div class="stat-icon">
+              <i class="fa-solid fa-arrow-trend-down"></i>
+            </div>
+
+            <p class="stat-label">SPENT</p>
+
+            <h2 class="stat-value" id="budgetSpent">KSH 0</h2>
+          </div>
+
+          <div class="card stat-card">
+            <div class="stat-icon">
+              <i class="fa-solid fa-coins"></i>
+            </div>
+
+            <p class="stat-label">REMAINING</p>
+
+            <h2 class="stat-value" id="budgetRemaining">KSH 0</h2>
+          </div>
+
+          <div class="card stat-card">
+            <div class="stat-icon">
+              <i class="fa-solid fa-chart-pie"></i>
+            </div>
+
+            <p class="stat-label">BUDGET USAGE</p>
+
+            <h2 class="stat-value" id="budgetPercentage">0%</h2>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-header">
+            <div>
+              <p class="eyebrow">SPENDING PLAN</p>
+
+              <h2>Category Budgets</h2>
+
+              <p class="section-description">
+                Monitor your spending by category.
+              </p>
+            </div>
+          </div>
+
+          <div class="budget-grid" id="budgetGrid"></div>
+        </section>
+      </main>
+    </div>
+
+    <!-- CREATE BUDGET MODAL -->
+
+    <div class="modal-overlay" id="budgetModal">
+      <div class="modal">
+        <div class="modal-header">
+          <div>
+            <h2>Create Budget</h2>
+
+            <p>Set a spending limit.</p>
+          </div>
+
+          <!-- FUNCTION: Close budget popup -->
+          <button class="icon-btn" id="closeBudgetModal">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <form id="budgetForm">
+          <div class="form-group">
+            <label>Category</label>
+
+            <select id="budgetCategory">
+              <option>Food</option>
+              <option>Transport</option>
+              <option>Shopping</option>
+              <option>Bills</option>
+              <option>Entertainment</option>
+              <option>Personal</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Monthly Limit</label>
+
+            <input type="number" id="budgetAmount" required />
+          </div>
+
+          <div class="modal-actions">
+            <!-- FUNCTION: Cancel budget creation -->
+            <button type="button" class="secondary-btn" id="cancelBudget">
+              Cancel
+            </button>
+
+            <!-- FUNCTION: Save budget -->
+            <button type="submit" class="primary-btn">Create Budget</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="/js/global.js"></script>
+    <script src="/js/budget.js"></script>
+  </body>
 </html>

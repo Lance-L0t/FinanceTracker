@@ -1,0 +1,1 @@
+const m=require('../models/notificationModel');async function list(req,res){res.json(await m.list(req.user.id));}async function read(req,res){await m.markRead(req.user.id,req.params.id);res.json({message:'Notification marked as read'});}async function clear(req,res){await m.clear(req.user.id);res.json({message:'Notifications cleared'});}module.exports={list,read,clear};
