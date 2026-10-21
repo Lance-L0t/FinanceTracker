@@ -1,11 +1,225 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dashboard | Chapaa Hub</title><link rel="stylesheet" href="/css/global.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"></head><body><div class="app"><aside class="sidebar"></aside><main class="main-content">
-<header class="topbar"><div class="page-title"><p class="kicker">YOUR MONEY, YOUR MOVE</p><h1>Hello, <span id="dash-name">there</span> 👋</h1><p>Here is your financial snapshot for today.</p></div><div class="topbar-actions"><div class="search"><i class="fa-solid fa-magnifying-glass"></i><input id="global-search" placeholder="Search transactions..."></div><button class="primary-btn" id="open-add"><i class="fa-solid fa-plus"></i><span>Add transaction</span></button></div></header>
-<section class="dashboard-grid"><div class="hero-balance"><span class="label">AVAILABLE BALANCE</span><h2 id="balance">KSh 0.00</h2><p id="balance-note">Your account balance updates automatically when you add or edit transactions.</p></div><div class="mini-grid"><div class="mini-stat"><span>THIS MONTH IN</span><strong id="month-income">KSh 0</strong></div><div class="mini-stat"><span>THIS MONTH OUT</span><strong id="month-expense">KSh 0</strong></div><div class="mini-stat"><span>NET THIS MONTH</span><strong id="month-net">KSh 0</strong></div></div></section>
-<section class="section"><div class="stats-grid"><div class="card stat-card"><div class="stat-top"><div class="stat-icon"><i class="fa-solid fa-arrow-trend-up"></i></div></div><p class="stat-label">TOTAL INCOME</p><h2 class="stat-value" id="income-total">KSh 0</h2><p class="stat-change positive">All recorded income</p></div><div class="card stat-card"><div class="stat-top"><div class="stat-icon"><i class="fa-solid fa-arrow-trend-down"></i></div></div><p class="stat-label">TOTAL EXPENSES</p><h2 class="stat-value" id="expense-total">KSh 0</h2><p class="stat-change negative">All recorded spending</p></div><div class="card stat-card"><div class="stat-top"><div class="stat-icon"><i class="fa-solid fa-wallet"></i></div></div><p class="stat-label">MONTHLY BUDGET</p><h2 class="stat-value" id="budget-total">KSh 0</h2><p class="stat-change">Current month plan</p></div><div class="card stat-card"><div class="stat-top"><div class="stat-icon"><i class="fa-solid fa-bullseye"></i></div></div><p class="stat-label">GOAL PROGRESS</p><h2 class="stat-value" id="goal-progress">0%</h2><p class="stat-change positive" id="goal-count">0 active goals</p></div></div></section>
-<section class="section"><div class="dashboard-grid"><div class="card panel"><div class="panel-head"><div><h3>Spending mix</h3><span class="muted">Current month expenses</span></div></div><div class="spending-layout"><div class="donut" id="donut"><div class="donut-center"><strong id="donut-total">KSh 0</strong>Total</div></div><div class="legend" id="spending-legend"></div></div></div><div class="card panel"><div class="panel-head"><div><h3>Recent activity</h3><span class="muted">Your latest transactions</span></div><a class="link-btn" href="/dashboard/transactions">View all →</a></div><div id="recent"></div></div></div></section>
-<section class="section"><div class="dashboard-grid"><div class="card panel"><div class="panel-head"><div><h3>Goals</h3><span class="muted">Keep the momentum going</span></div><a class="link-btn" href="/dashboard/goals">Manage →</a></div><div id="goals-preview"></div></div><div class="card panel"><div class="panel-head"><div><h3>Budget watch</h3><span class="muted">Where you are close to the limit</span></div><a class="link-btn" href="/dashboard/budgets">Manage →</a></div><div id="budgets-preview"></div></div></div></section>
-<section class="section"><div class="card panel"><div class="panel-head"><div><h3>Quick actions</h3><span class="muted">Do more in fewer clicks</span></div></div><div class="quick-actions"><button class="quick-btn" id="quick-expense"><i class="fa-solid fa-arrow-up"></i>Add expense</button><button class="quick-btn" id="quick-income"><i class="fa-solid fa-arrow-down"></i>Add income</button><button class="quick-btn" id="quick-topup"><i class="fa-solid fa-wallet"></i>Add money</button><button class="quick-btn" id="quick-goal"><i class="fa-solid fa-bullseye"></i>Create goal</button></div></div></section>
-</main></div>
-<div class="modal-backdrop" id="tx-modal"><div class="modal"><div class="modal-head"><div><h2 id="tx-modal-title">Add transaction</h2><p>Income increases your balance. Expenses reduce it.</p></div><button class="modal-close" data-close-modal="tx-modal">×</button></div><form id="tx-form"><input type="hidden" name="id"><div class="form-grid"><div class="field"><label>TYPE</label><select name="type" id="tx-type"><option value="expense">Expense</option><option value="income">Income</option></select></div><div class="field"><label>CATEGORY</label><select name="category" id="tx-category"><option>Food</option><option>Transport</option><option>Shopping</option><option>Bills</option><option>Entertainment</option><option>Personal</option><option>Education</option><option>Health</option><option>Other</option></select></div><div class="field full"><label>DESCRIPTION</label><input name="description" required maxlength="255" placeholder="e.g. Groceries"></div><div class="field"><label>AMOUNT</label><input name="amount" type="number" min="0.01" step="0.01" required></div><div class="field"><label>DATE</label><input name="date" type="date"></div></div><div class="modal-actions"><button type="button" class="secondary-btn" data-close-modal="tx-modal">Cancel</button><!-- BUTTON: Save new or edited transaction --><button class="primary-btn">Save transaction</button></div></form></div></div>
-<div class="modal-backdrop" id="topup-modal"><div class="modal"><div class="modal-head"><div><h2>Add money</h2><p>Record money entering your account.</p></div><button class="modal-close" data-close-modal="topup-modal">×</button></div><form id="topup-form"><div class="form-grid"><div class="field full"><label>AMOUNT</label><input name="amount" type="number" min="0.01" step="0.01" required></div><div class="field full"><label>DESCRIPTION</label><input name="description" required placeholder="e.g. Salary"></div></div><div class="modal-actions"><button type="button" class="secondary-btn" data-close-modal="topup-modal">Cancel</button><!-- BUTTON: Add money to account --><button class="primary-btn">Add money</button></div></form></div></div>
-<div class="modal-backdrop" id="goal-modal"><div class="modal"><div class="modal-head"><div><h2>Create goal</h2><p>Turn something you want into a number you can chase.</p></div><button class="modal-close" data-close-modal="goal-modal">×</button></div><form id="goal-form"><div class="form-grid"><div class="field"><label>GOAL NAME</label><input name="name" required placeholder="New laptop"></div><div class="field"><label>TARGET</label><input name="target_amount" type="number" min="1" step="0.01" required></div><div class="field full"><label>DESCRIPTION</label><textarea name="description" placeholder="What are you saving for?"></textarea></div><div class="field"><label>DEADLINE</label><input name="deadline" type="date"></div></div><div class="modal-actions"><button type="button" class="secondary-btn" data-close-modal="goal-modal">Cancel</button><!-- BUTTON: Create a savings goal --><button class="primary-btn">Create goal</button></div></form></div></div><div id="toast" class="toast"></div><script src="/js/global.js"></script><script src="/js/dashboard.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Dashboard | Chapaa Hub</title>
+	<link rel="stylesheet" href="/css/global.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+	<div class="app">
+		<aside class="sidebar"></aside>
+		<main class="main-content">
+			<header class="topbar">
+				<div class="page-title">
+					<p class="kicker">YOUR MONEY, YOUR MOVE</p>
+					<h1>Hello, <span id="dash-name">there</span></h1>
+					<p>Here is your financial snapshot for today.</p>
+				</div>
+				<div class="topbar-actions">
+					<div class="search"><i class="fa-solid fa-magnifying-glass"></i><input id="global-search"
+							placeholder="Search transactions..."></div><button class="primary-btn" id="open-add"><i
+							class="fa-solid fa-plus"></i><span>Add transaction</span></button>
+				</div>
+			</header>
+			<section class="dashboard-grid">
+				<div class="hero-balance"><span class="label">AVAILABLE BALANCE</span>
+					<h2 id="balance">KSh 0.00</h2>
+					<p id="balance-note">Your account balance updates automatically when you add or edit transactions.
+					</p>
+				</div>
+				<div class="mini-grid">
+					<div class="mini-stat"><span>THIS MONTH IN</span><strong id="month-income">KSh 0</strong></div>
+					<div class="mini-stat"><span>THIS MONTH OUT</span><strong id="month-expense">KSh 0</strong></div>
+					<div class="mini-stat"><span>NET THIS MONTH</span><strong id="month-net">KSh 0</strong></div>
+				</div>
+			</section>
+			<section class="section">
+				<div class="stats-grid">
+					<div class="card stat-card">
+						<div class="stat-top">
+							<div class="stat-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+						</div>
+						<p class="stat-label">TOTAL INCOME</p>
+						<h2 class="stat-value" id="income-total">KSh 0</h2>
+						<p class="stat-change positive">All recorded income</p>
+					</div>
+					<div class="card stat-card">
+						<div class="stat-top">
+							<div class="stat-icon"><i class="fa-solid fa-arrow-trend-down"></i></div>
+						</div>
+						<p class="stat-label">TOTAL EXPENSES</p>
+						<h2 class="stat-value" id="expense-total">KSh 0</h2>
+						<p class="stat-change negative">All recorded spending</p>
+					</div>
+					<div class="card stat-card">
+						<div class="stat-top">
+							<div class="stat-icon"><i class="fa-solid fa-wallet"></i></div>
+						</div>
+						<p class="stat-label">MONTHLY BUDGET</p>
+						<h2 class="stat-value" id="budget-total">KSh 0</h2>
+						<p class="stat-change">Current month plan</p>
+					</div>
+					<div class="card stat-card">
+						<div class="stat-top">
+							<div class="stat-icon"><i class="fa-solid fa-bullseye"></i></div>
+						</div>
+						<p class="stat-label">GOAL PROGRESS</p>
+						<h2 class="stat-value" id="goal-progress">0%</h2>
+						<p class="stat-change positive" id="goal-count">0 active goals</p>
+					</div>
+				</div>
+			</section>
+			<section class="section">
+				<div class="dashboard-grid">
+					<div class="card panel">
+						<div class="panel-head">
+							<div>
+								<h3>Spending mix</h3><span class="muted">Current month expenses</span>
+							</div>
+						</div>
+						<div class="spending-layout">
+							<div class="donut" id="donut">
+								<div class="donut-center"><strong id="donut-total">KSh 0</strong>Total</div>
+							</div>
+							<div class="legend" id="spending-legend"></div>
+						</div>
+					</div>
+					<div class="card panel">
+						<div class="panel-head">
+							<div>
+								<h3>Recent activity</h3><span class="muted">Your latest transactions</span>
+							</div><a class="link-btn" href="/dashboard/transactions">View all →</a>
+						</div>
+						<div id="recent"></div>
+					</div>
+				</div>
+			</section>
+			<section class="section">
+				<div class="dashboard-grid">
+					<div class="card panel">
+						<div class="panel-head">
+							<div>
+								<h3>Goals</h3><span class="muted">Keep the momentum going</span>
+							</div><a class="link-btn" href="/dashboard/goals">Manage →</a>
+						</div>
+						<div id="goals-preview"></div>
+					</div>
+					<div class="card panel">
+						<div class="panel-head">
+							<div>
+								<h3>Budget watch</h3><span class="muted">Where you are close to the limit</span>
+							</div><a class="link-btn" href="/dashboard/budgets">Manage →</a>
+						</div>
+						<div id="budgets-preview"></div>
+					</div>
+				</div>
+			</section>
+			<section class="section">
+				<div class="card panel">
+					<div class="panel-head">
+						<div>
+							<h3>Quick actions</h3><span class="muted">Do more in fewer clicks</span>
+						</div>
+					</div>
+					<div class="quick-actions"><button class="quick-btn" id="quick-expense"><i
+								class="fa-solid fa-arrow-up"></i>Add expense</button><button class="quick-btn"
+							id="quick-income"><i class="fa-solid fa-arrow-down"></i>Add income</button><button
+							class="quick-btn" id="quick-topup"><i class="fa-solid fa-wallet"></i>Add
+							money</button><button class="quick-btn" id="quick-goal"><i
+								class="fa-solid fa-bullseye"></i>Create goal</button></div>
+				</div>
+			</section>
+		</main>
+	</div>
+	<div class="modal-backdrop" id="tx-modal">
+		<div class="modal">
+			<div class="modal-head">
+				<div>
+					<h2 id="tx-modal-title">Add transaction</h2>
+					<p>Income increases your balance. Expenses reduce it.</p>
+				</div><button class="modal-close" data-close-modal="tx-modal">×</button>
+			</div>
+			<form id="tx-form"><input type="hidden" name="id">
+				<div class="form-grid">
+					<div class="field"><label>TYPE</label><select name="type" id="tx-type">
+							<option value="expense">Expense</option>
+							<option value="income">Income</option>
+						</select></div>
+					<div class="field"><label>CATEGORY</label><select name="category" id="tx-category">
+							<option>Food</option>
+							<option>Transport</option>
+							<option>Shopping</option>
+							<option>Bills</option>
+							<option>Entertainment</option>
+							<option>Personal</option>
+							<option>Education</option>
+							<option>Health</option>
+							<option>Other</option>
+						</select></div>
+					<div class="field full"><label>DESCRIPTION</label><input name="description" required maxlength="255"
+							placeholder="e.g. Groceries"></div>
+					<div class="field"><label>AMOUNT</label><input name="amount" type="number" min="0.01" step="0.01"
+							required></div>
+					<div class="field"><label>DATE</label><input name="date" type="date"></div>
+				</div>
+				<div class="modal-actions"><button type="button" class="secondary-btn"
+						data-close-modal="tx-modal">Cancel</button><!-- BUTTON: Save new or edited transaction --><button
+						class="primary-btn">Save transaction</button></div>
+			</form>
+		</div>
+	</div>
+	<div class="modal-backdrop" id="topup-modal">
+		<div class="modal">
+			<div class="modal-head">
+				<div>
+					<h2>Add money</h2>
+					<p>Record money entering your account.</p>
+				</div><button class="modal-close" data-close-modal="topup-modal">×</button>
+			</div>
+			<form id="topup-form">
+				<div class="form-grid">
+					<div class="field full"><label>AMOUNT</label><input name="amount" type="number" min="0.01"
+							step="0.01" required></div>
+					<div class="field full"><label>DESCRIPTION</label><input name="description" required
+							placeholder="e.g. Salary"></div>
+				</div>
+				<div class="modal-actions"><button type="button" class="secondary-btn"
+						data-close-modal="topup-modal">Cancel</button><!-- BUTTON: Add money to account --><button
+						class="primary-btn">Add money</button></div>
+			</form>
+		</div>
+	</div>
+	<div class="modal-backdrop" id="goal-modal">
+		<div class="modal">
+			<div class="modal-head">
+				<div>
+					<h2>Create goal</h2>
+					<p>Turn something you want into a number you can chase.</p>
+				</div><button class="modal-close" data-close-modal="goal-modal">×</button>
+			</div>
+			<form id="goal-form">
+				<div class="form-grid">
+					<div class="field"><label>GOAL NAME</label><input name="name" required placeholder="New laptop">
+					</div>
+					<div class="field"><label>TARGET</label><input name="target_amount" type="number" min="1"
+							step="0.01" required></div>
+					<div class="field full"><label>DESCRIPTION</label><textarea name="description"
+							placeholder="What are you saving for?"></textarea></div>
+					<div class="field"><label>DEADLINE</label><input name="deadline" type="date"></div>
+				</div>
+				<div class="modal-actions"><button type="button" class="secondary-btn"
+						data-close-modal="goal-modal">Cancel</button><!-- BUTTON: Create a savings goal --><button
+						class="primary-btn">Create goal</button></div>
+			</form>
+		</div>
+	</div>
+	<div id="toast" class="toast"></div>
+	<script src="/js/global.js"></script>
+	<script src="/js/dashboard.js"></script>
+</body>
+
+</html>

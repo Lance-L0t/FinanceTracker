@@ -1,1 +1,68 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Reports | Chapaa Hub</title><link rel="stylesheet" href="/css/global.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"></head><body><div class="app"><aside class="sidebar"></aside><main class="main-content"><header class="topbar"><div class="page-title"><p class="kicker">MONTHLY RECAP</p><h1>Reports</h1><p>Review a month and export the numbers.</p></div><div class="topbar-actions"><input id="report-month" type="month"><button class="primary-btn" id="export-csv"><i class="fa-solid fa-file-csv"></i><span>Export CSV</span></button></div></header><section class="section"><div class="stats-grid"><div class="card report-kpi"><span>INCOME</span><strong id="r-income">KSh 0</strong></div><div class="card report-kpi"><span>EXPENSES</span><strong id="r-expenses">KSh 0</strong></div><div class="card report-kpi"><span>NET</span><strong id="r-net">KSh 0</strong></div><div class="card report-kpi"><span>TRANSACTIONS</span><strong id="r-count">0</strong></div></div></section><section class="section"><div class="dashboard-grid"><div class="card panel"><div class="panel-head"><h3>Category breakdown</h3></div><div id="report-cats" class="legend"></div></div><div class="card panel"><div class="panel-head"><h3>Monthly transactions</h3></div><div class="table-wrap"><table class="professional-table"><thead><tr><th>Description</th><th>Category</th><th>Amount</th><th>Date</th></tr></thead><tbody id="report-table"></tbody></table></div></div></div></section></main></div><div id="toast" class="toast"></div><script src="/js/global.js"></script><script src="/js/reports.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Reports | Chapaa Hub</title>
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+    <div class="app">
+        <aside class="sidebar"></aside>
+        <main class="main-content">
+            <header class="topbar">
+                <div class="page-title">
+                    <p class="kicker">MONTHLY RECAP</p>
+                    <h1>Reports</h1>
+                    <p>Review a month and export the numbers.</p>
+                </div>
+                <div class="topbar-actions"><input id="report-month" type="month"><button class="primary-btn"
+                        id="export-csv"><i class="fa-solid fa-file-csv"></i><span>Export CSV</span></button></div>
+            </header>
+            <section class="section">
+                <div class="stats-grid">
+                    <div class="card report-kpi"><span>INCOME</span><strong id="r-income">KSh 0</strong></div>
+                    <div class="card report-kpi"><span>EXPENSES</span><strong id="r-expenses">KSh 0</strong></div>
+                    <div class="card report-kpi"><span>NET</span><strong id="r-net">KSh 0</strong></div>
+                    <div class="card report-kpi"><span>TRANSACTIONS</span><strong id="r-count">0</strong></div>
+                </div>
+            </section>
+            <section class="section">
+                <div class="dashboard-grid">
+                    <div class="card panel">
+                        <div class="panel-head">
+                            <h3>Category breakdown</h3>
+                        </div>
+                        <div id="report-cats" class="legend"></div>
+                    </div>
+                    <div class="card panel">
+                        <div class="panel-head">
+                            <h3>Monthly transactions</h3>
+                        </div>
+                        <div class="table-wrap">
+                            <table class="professional-table">
+                                <thead>
+                                    <tr>
+                                        <th>Description</th>
+                                        <th>Category</th>
+                                        <th>Amount</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="report-table"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <div id="toast" class="toast"></div>
+    <script src="/js/global.js"></script>
+    <script src="/js/reports.js"></script>
+</body>
+
+</html>

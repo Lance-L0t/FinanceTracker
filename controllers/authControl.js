@@ -4,9 +4,6 @@ const jwt = require("jsonwebtoken");
 const path = require("path");
 const express = require("express");
 
-
-
-
 async function registerUser(req, res) {
   const { username, email, password } = req.body;
 
@@ -30,15 +27,14 @@ async function loginUser(req, res) {
     });
     console.log("Token: ", token);
     res.cookie("token", token, { httpOnly: true });
-    res.redirect('/dashboard');
+    res.redirect("/dashboard");
   } else {
     res.json({ error: "Invalid Email or password" });
   }
 }
 
-
-function logoutUser(req,res){
-  res.clearCookie('token', {httpOnly:true});
-  return res.status(200).redirect('/');
+function logoutUser(req, res) {
+  res.clearCookie("token", { httpOnly: true });
+  return res.status(200).redirect("/");
 }
 module.exports = { registerUser, loginUser, logoutUser };

@@ -1,3 +1,108 @@
-let txRows=[];function renderTx(){const q=($('#search').value||'').toLowerCase(),cat=$('#category').value,type=$('#type').value;const filtered=txRows.filter(x=>{const inc=String(x.category).toLowerCase()==='income';return(!q||`${x.description} ${x.category}`.toLowerCase().includes(q))&&(cat==='All Categories'||String(x.category).toLowerCase()===cat.toLowerCase())&&(type==='All Types'||(type==='Income'?inc:!inc))});$('#table-body').innerHTML=filtered.length?filtered.map(x=>{const inc=String(x.category).toLowerCase()==='income';const safe=encodeURIComponent(JSON.stringify(x));return `<tr><td><div class="transaction-item" style="border:0;padding:0"><div class="tx-icon"><i class="fa-solid ${inc?'fa-arrow-down':'fa-cart-shopping'}"></i></div><div class="tx-main"><strong>${escapeHtml(x.description)}</strong><span>Personal account</span></div></div></td><td><span class="category-badge">${capitalizeWords(x.category)}</span></td><td>${dateOnly(x.date)}</td><td class="${inc?'amount-income':'amount-expense'}">${inc?'+':'-'}${money(x.amount)}</td><td><span class="status-badge completed">Completed</span></td><td><div class="row-actions"><button class="icon-btn" data-menu-btn><i class="fa-solid fa-ellipsis"></i></button><div class="menu"><button data-edit="${safe}">Edit</button><button data-delete="${x.id}">Delete</button></div></div></td></tr>`}).join(''):'<tr><td colspan="6" class="empty">No transactions match your filters.</td></tr>'}
-function editTx(x){const f=$('#tx-form');f.reset();f.id.value=x.id;f.description.value=x.description;f.amount.value=x.amount;f.type.value=String(x.category).toLowerCase()==='income'?'income':'expense';f.category.value=String(x.category).toLowerCase()==='income'?'Food':capitalizeWords(x.category);f.date.value=x.date?new Date(x.date).toISOString().slice(0,10):'';$('#modal-title').textContent='Edit transaction';openModal('tx-modal')}
-document.addEventListener('DOMContentLoaded',async()=>{try{txRows=await api('/expenses');const q=new URLSearchParams(location.search).get('search');if(q)$('#search').value=q;renderTx()}catch(e){toast(e.message)}$('#search').addEventListener('input',renderTx);$('#category').addEventListener('change',renderTx);$('#type').addEventListener('change',renderTx);$('#open-add').addEventListener('click',()=>{const f=$('#tx-form');f.reset();f.id.value='';$('#modal-title').textContent='Add transaction';openModal('tx-modal')});$('#tx-form').addEventListener('submit',async e=>{e.preventDefault();const d=Object.fromEntries(new FormData(e.target));const payload={description:d.description,amount:d.amount,category:d.type==='income'?'income':d.category,date:d.date||undefined};try{await api(d.id?`/expenses/${d.id}`:'/expenses/newExpense',{method:d.id?'PUT':'POST',body:JSON.stringify(payload)});closeModal('tx-modal');toast(d.id?'Transaction updated':'Transaction added');txRows=await api('/expenses');renderTx()}catch(err){toast(err.message)}});$('#confirm-delete').addEventListener('click',async()=>{try{await api(`/expenses/${$('#delete-id').value}`,{method:'DELETE'});closeModal('delete-modal');toast('Transaction deleted');txRows=await api('/expenses');renderTx()}catch(e){toast(e.message)}});document.addEventListener('click',e=>{const ed=e.target.closest('[data-edit]'),del=e.target.closest('[data-delete]');if(ed){try{editTx(JSON.parse(decodeURIComponent(ed.dataset.edit)))}catch{toast('Could not open transaction')}}if(del){$('#delete-id').value=del.dataset.delete;openModal('delete-modal')}})});
+let txRows = [];
+function renderTx() {
+  const q = ($("#search").value || "").toLowerCase(),
+    cat = $("#category").value,
+    type = $("#type").value;
+  const filtered = txRows.filter((x) => {
+    const inc = String(x.category).toLowerCase() === "income";
+    return (
+      (!q || `${x.description} ${x.category}`.toLowerCase().includes(q)) &&
+      (cat === "All Categories" ||
+        String(x.category).toLowerCase() === cat.toLowerCase()) &&
+      (type === "All Types" || (type === "Income" ? inc : !inc))
+    );
+  });
+  $("#table-body").innerHTML = filtered.length
+    ? filtered
+        .map((x) => {
+          const inc = String(x.category).toLowerCase() === "income";
+          const safe = encodeURIComponent(JSON.stringify(x));
+          return `<tr><td><div class="transaction-item" style="border:0;padding:0"><div class="tx-icon"><i class="fa-solid ${inc ? "fa-arrow-down" : "fa-cart-shopping"}"></i></div><div class="tx-main"><strong>${escapeHtml(x.description)}</strong><span>Personal account</span></div></div></td><td><span class="category-badge">${capitalizeWords(x.category)}</span></td><td>${dateOnly(x.date)}</td><td class="${inc ? "amount-income" : "amount-expense"}">${inc ? "+" : "-"}${money(x.amount)}</td><td><span class="status-badge completed">Completed</span></td><td><div class="row-actions"><button class="icon-btn" data-menu-btn><i class="fa-solid fa-ellipsis"></i></button><div class="menu"><button data-edit="${safe}">Edit</button><button data-delete="${x.id}">Delete</button></div></div></td></tr>`;
+        })
+        .join("")
+    : '<tr><td colspan="6" class="empty">No transactions match your filters.</td></tr>';
+}
+function editTx(x) {
+  const f = $("#tx-form");
+  f.reset();
+  f.id.value = x.id;
+  f.description.value = x.description;
+  f.amount.value = x.amount;
+  f.type.value =
+    String(x.category).toLowerCase() === "income" ? "income" : "expense";
+  f.category.value =
+    String(x.category).toLowerCase() === "income"
+      ? "Food"
+      : capitalizeWords(x.category);
+  f.date.value = x.date ? new Date(x.date).toISOString().slice(0, 10) : "";
+  $("#modal-title").textContent = "Edit transaction";
+  openModal("tx-modal");
+}
+document.addEventListener("DOMContentLoaded", async () => {
+  try {
+    txRows = await api("/expenses");
+    const q = new URLSearchParams(location.search).get("search");
+    if (q) $("#search").value = q;
+    renderTx();
+  } catch (e) {
+    toast(e.message);
+  }
+  $("#search").addEventListener("input", renderTx);
+  $("#category").addEventListener("change", renderTx);
+  $("#type").addEventListener("change", renderTx);
+  $("#open-add").addEventListener("click", () => {
+    const f = $("#tx-form");
+    f.reset();
+    f.id.value = "";
+    $("#modal-title").textContent = "Add transaction";
+    openModal("tx-modal");
+  });
+  $("#tx-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const d = Object.fromEntries(new FormData(e.target));
+    const payload = {
+      description: d.description,
+      amount: d.amount,
+      category: d.type === "income" ? "income" : d.category,
+      date: d.date || undefined,
+    };
+    try {
+      await api(d.id ? `/expenses/${d.id}` : "/expenses/newExpense", {
+        method: d.id ? "PUT" : "POST",
+        body: JSON.stringify(payload),
+      });
+      closeModal("tx-modal");
+      toast(d.id ? "Transaction updated" : "Transaction added");
+      txRows = await api("/expenses");
+      renderTx();
+    } catch (err) {
+      toast(err.message);
+    }
+  });
+  $("#confirm-delete").addEventListener("click", async () => {
+    try {
+      await api(`/expenses/${$("#delete-id").value}`, { method: "DELETE" });
+      closeModal("delete-modal");
+      toast("Transaction deleted");
+      txRows = await api("/expenses");
+      renderTx();
+    } catch (e) {
+      toast(e.message);
+    }
+  });
+  document.addEventListener("click", (e) => {
+    const ed = e.target.closest("[data-edit]"),
+      del = e.target.closest("[data-delete]");
+    if (ed) {
+      try {
+        editTx(JSON.parse(decodeURIComponent(ed.dataset.edit)));
+      } catch {
+        toast("Could not open transaction");
+      }
+    }
+    if (del) {
+      $("#delete-id").value = del.dataset.delete;
+      openModal("delete-modal");
+    }
+  });
+});

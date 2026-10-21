@@ -41,7 +41,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!response.ok) {
           const errorData = await response.json().catch(() => ({}));
-          throw new Error(errorData.error || "Login failed. Please check your credentials.");
+          throw new Error(
+            errorData.error || "Login failed. Please check your credentials.",
+          );
         }
 
         window.location.href = "/dashboard";
@@ -74,7 +76,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!response.ok) {
           const errorData = await response.json().catch(() => ({}));
-          throw new Error(errorData.error || "Registration failed. Please try again.");
+          throw new Error(
+            errorData.error || "Registration failed. Please try again.",
+          );
         }
 
         window.location.href = "/dashboard";

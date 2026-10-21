@@ -1,1 +1,6 @@
-const router=require('express').Router();const c=require('../controllers/settingsController');const {authenticate}=require('../middleware/auth');router.get('/',authenticate,c.get);router.put('/',authenticate,c.update);module.exports=router;
+const router = require("express").Router();
+const c = require("../controllers/settingsController");
+const { authenticate } = require("../middleware/auth");
+router.get("/", authenticate, c.get);
+router.put("/", authenticate, c.update);
+module.exports = router;
