@@ -19,16 +19,20 @@
                     <h1>Transactions</h1>
                     <p>Every inflow and outflow, in one clean timeline.</p>
                 </div>
-                <div class="topbar-actions"><button class="primary-btn" id="open-add"><i
-                            class="fa-solid fa-plus"></i><span>Add transaction</span></button></div>
+                <div class="topbar-actions"><button class="primary-btn" id="open-add">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>Add transaction</span></button>
+                </div>
             </header>
             <section class="section">
                 <div class="card panel">
                     <div class="toolbar"
                         style="display:grid;grid-template-columns:1fr 170px 150px;gap:9px;margin-bottom:16px">
-                        <div class="search"><i class="fa-solid fa-magnifying-glass"></i><input id="search"
-                                placeholder="Search description or category"></div><select id="category"
-                            class="field input">
+                        <div class="search">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input id="search" placeholder="Search description or category">
+                        </div>
+                        <select id="category" class="field input">
                             <option>All Categories</option>
                             <option>Food</option>
                             <option>Transport</option>
@@ -40,7 +44,8 @@
                             <option>Health</option>
                             <option>Other</option>
                             <option>Income</option>
-                        </select><select id="type">
+                        </select>
+                        <select id="type">
                             <option>All Types</option>
                             <option>Income</option>
                             <option>Expense</option>
@@ -77,7 +82,7 @@
                 <div class="form-grid">
                     <div class="field"><label>TYPE</label><select name="type">
                             <option value="expense">Expense</option>
-                            <option value="income">Income</option>
+                            <!-- <option value="income">Income</option> -->
                         </select></div>
                     <div class="field">
                         <label>CATEGORY</label>
@@ -91,7 +96,8 @@
                             <option>Education</option>
                             <option>Health</option>
                             <option>Other</option>
-                        </select></div>
+                        </select>
+                    </div>
                     <div class="field full"><label>DESCRIPTION</label><input name="description" required></div>
                     <div class="field"><label>AMOUNT</label><input name="amount" type="number" min="0.01" step="0.01"
                             required></div>

@@ -172,3 +172,21 @@ document.addEventListener("DOMContentLoaded", async () => {
         "/dashboard/transactions?search=" + encodeURIComponent(e.target.value);
   });
 });
+
+function hideCategory(e) {
+  if (e.target.value === "income") {
+    document.querySelector("#tx-type").style.width = "204%";
+    document.querySelector(".category-field").style.display = "none";
+  } else if (e.target.value === "expense") {
+    document.querySelector("#tx-type").style.width = "100%";
+    document.querySelector(".category-field").style.display = "block";
+  }
+}
+
+document.getElementById("open-add").addEventListener("click", () => {
+  document.querySelector("#tx-type").style.width = "100%";
+  document.querySelector(".category-field").style.display = "block";
+  let select = document.querySelector("#tx-type").value;
+  select = "expense";
+});
+document.getElementById("tx-type").addEventListener("change", hideCategory);
