@@ -20,9 +20,14 @@
 					<p>Here is your financial snapshot for today.</p>
 				</div>
 				<div class="topbar-actions">
-					<div class="search"><i class="fa-solid fa-magnifying-glass"></i><input id="global-search"
-							placeholder="Search transactions..."></div><button class="primary-btn" id="open-add"><i
-							class="fa-solid fa-plus"></i><span>Add transaction</span></button>
+					<div class="search">
+						<i class="fa-solid fa-magnifying-glass"></i>
+						<input id="global-search" placeholder="Search transactions...">
+					</div>
+					<button class="primary-btn" id="open-add">
+						<i class="fa-solid fa-plus"></i>
+						<span>Add transaction</span>
+					</button>
 				</div>
 			</header>
 			<section class="dashboard-grid">
@@ -145,11 +150,16 @@
 			</div>
 			<form id="tx-form"><input type="hidden" name="id">
 				<div class="form-grid">
-					<div class="field"><label>TYPE</label><select name="type" id="tx-type">
+					<div class="field">
+						<label>TYPE</label>
+						<select name="type" id="tx-type">
 							<option value="expense">Expense</option>
 							<option value="income">Income</option>
-						</select></div>
-					<div class="field"><label>CATEGORY</label><select name="category" id="tx-category">
+						</select>
+					</div>
+					<div class="field category-field">
+						<label>CATEGORY</label>
+						<select name="category" id="tx-category">
 							<option>Food</option>
 							<option>Transport</option>
 							<option>Shopping</option>
@@ -159,7 +169,8 @@
 							<option>Education</option>
 							<option>Health</option>
 							<option>Other</option>
-						</select></div>
+						</select>
+					</div>
 					<div class="field full"><label>DESCRIPTION</label><input name="description" required maxlength="255"
 							placeholder="e.g. Groceries"></div>
 					<div class="field"><label>AMOUNT</label><input name="amount" type="number" min="0.01" step="0.01"
@@ -182,14 +193,20 @@
 			</div>
 			<form id="topup-form">
 				<div class="form-grid">
-					<div class="field full"><label>AMOUNT</label><input name="amount" type="number" min="0.01"
-							step="0.01" required></div>
-					<div class="field full"><label>DESCRIPTION</label><input name="description" required
-							placeholder="e.g. Salary"></div>
+					<div class="field full"><label>AMOUNT</label>
+						<input name="amount" type="number" min="0.01" step="0.01" required>
+					</div>
+					<div class="field full">
+						<label>DESCRIPTION</label>
+						<input name="description" required placeholder="e.g. Salary">
+					</div>
 				</div>
-				<div class="modal-actions"><button type="button" class="secondary-btn"
-						data-close-modal="topup-modal">Cancel</button><!-- BUTTON: Add money to account --><button
-						class="primary-btn">Add money</button></div>
+				<div class="modal-actions">
+					<button type="button" class="secondary-btn" data-close-modal="topup-modal">
+						Cancel
+					</button><!-- BUTTON: Add money to account -->
+					<button class="primary-btn">Add money</button>
+				</div>
 			</form>
 		</div>
 	</div>
