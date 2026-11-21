@@ -311,6 +311,12 @@ button {
     transform: translateY(-2px)
 }
 
+.primary-btn:active,
+.secondary-btn:active,
+.quick-btn:active {
+    transform: translateY(0) scale(.98);
+}
+
 .secondary-btn {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -368,6 +374,38 @@ button {
     border: 1px solid var(--border);
     border-radius: 20px;
     box-shadow: var(--shadow)
+}
+
+@keyframes card-arrive {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.stats-grid > .card,
+.cards-grid > .card {
+    animation: card-arrive .4s ease both;
+}
+
+.stats-grid > .card:nth-child(2),
+.cards-grid > .card:nth-child(2) {
+    animation-delay: 60ms;
+}
+
+.stats-grid > .card:nth-child(3),
+.cards-grid > .card:nth-child(3) {
+    animation-delay: 120ms;
+}
+
+.stats-grid > .card:nth-child(4),
+.cards-grid > .card:nth-child(4) {
+    animation-delay: 180ms;
 }
 
 .stat-card {
@@ -645,6 +683,25 @@ button {
     height: 100%;
     background: linear-gradient(90deg, var(--primary), var(--primary-2));
     border-radius: inherit;
+    transition: width .65s cubic-bezier(.22, 1, .36, 1);
+}
+
+.budget-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
 }
 
 .budget-overview {
@@ -1165,6 +1222,7 @@ button {
 .hero-balance {
     padding: 22px;
     border-radius: 22px;
+    margin-bottom: 20px;
     background: linear-gradient(135deg, #2d2420, #4b352a);
     color: #fff;
     position: relative;
@@ -1201,7 +1259,10 @@ button {
 }
 
 .account-card {
-    padding: 18px
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .account-head {
@@ -1223,7 +1284,7 @@ button {
 .account-card h3 {
     font-family: 'Bricolage Grotesque';
     font-size: 16px;
-    margin-top: 14px
+    margin-top: 6px
 }
 
 .report-kpi {
