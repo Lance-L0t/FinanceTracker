@@ -13,6 +13,14 @@ async function create(userId, type, title, message) {
   );
   return r.insertId;
 }
+async function createOnce(userId, type, title, message) {
+  const [existing] = await db.query(
+    "SELECT id FROM notifications WHERE user_id=? AND type=? AND title=? AND message=? AND created_at >= DATE_FORMAT(CURRENT_DATE,'%Y-%m-01') LIMIT 1",
+    [userId, type, title, message],
+  );
+  if (existing.length) return existing[0].id;
+  return create(userId, type, title, message);
+}
 async function markRead(userId, id) {
   await db.query(
     "UPDATE notifications SET read_at=COALESCE(read_at,CURRENT_TIMESTAMP) WHERE id=? AND user_id=?",
@@ -22,4 +30,4 @@ async function markRead(userId, id) {
 async function clear(userId) {
   await db.query("DELETE FROM notifications WHERE user_id=?", [userId]);
 }
-module.exports = { list, create, markRead, clear };
+module.exports = { list, create, createOnce, markRead, clear };

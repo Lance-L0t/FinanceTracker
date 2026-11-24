@@ -22,6 +22,8 @@ async function register(req, res) {
         error:
           "Username, valid email and password of at least 6 characters are required",
       });
+  if (!/^[\p{L}]+(?: [\p{L}]+)*$/u.test(username))
+    return res.status(400).json({ error: "Username can contain letters and spaces only" });
   if (await users.findByEmail(email))
     return res
       .status(409)

@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   try {
     const s = await api("/settings");
     $("#theme-setting").checked = s.theme === "dark";
-    $("#email_notifications").checked = Boolean(s.email_notifications);
     $("#budget_alerts").checked = Boolean(s.budget_alerts);
     $("#goal_reminders").checked = Boolean(s.goal_reminders);
     $("#monthly_reminders").checked = Boolean(s.monthly_reminders);
@@ -20,7 +19,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     try {
       const data = {
         theme: $("#theme-setting").checked ? "dark" : "light",
-        email_notifications: $("#email_notifications").checked,
         budget_alerts: $("#budget_alerts").checked,
         goal_reminders: $("#goal_reminders").checked,
         monthly_reminders: $("#monthly_reminders").checked,

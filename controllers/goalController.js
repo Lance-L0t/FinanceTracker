@@ -1,5 +1,7 @@
 const m = require("../models/goalModel");
 const { cleanString, positiveAmount } = require("../utils/validation");
+const settingsModel = require("../models/settingsModel");
+const notificationModel = require("../models/notificationModel");
 async function list(req, res) {
   res.json(await m.listGoals(req.user.id));
 }
@@ -34,14 +36,20 @@ async function remove(req, res) {
   res.json({ message: "Goal deleted" });
 }
 async function contribute(req, res) {
-  res.json(
-    await m.contribute(
+  const before = await m.getGoal(req.user.id, req.params.id);
+  const goal = await m.contribute(
       req.user.id,
       req.params.id,
       positiveAmount(req.body.amount),
       req.body.note,
-    ),
-  );
+    );
+  if (before && before.status !== "completed" && goal.status === "completed") {
+    const settings = await settingsModel.get(req.user.id);
+    if (settings.goal_reminders)
+      await notificationModel.createOnce(req.user.id, "goal", `Goal reached: ${goal.name}`,
+        `You reached your savings target of KSh ${Number(goal.target_amount).toLocaleString()}.`);
+  }
+  res.json(goal);
 }
 async function withdraw(req, res) {
   res.json(
