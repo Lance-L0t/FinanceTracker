@@ -1,4 +1,7 @@
 const model = require("../models/expenseModel");
+const budgetModel = require("../models/budgetModel");
+const settingsModel = require("../models/settingsModel");
+const notificationModel = require("../models/notificationModel");
 const {
   cleanString,
   positiveAmount,
@@ -29,6 +32,7 @@ async function addNewTransaction(req, res) {
     category,
     date,
   });
+  await notifyBudgetHits(req.user.id, category);
   res.status(201).json(row);
 }
 async function updateTransaction(req, res) {
@@ -36,14 +40,27 @@ async function updateTransaction(req, res) {
     amount = positiveAmount(req.body.amount),
     category = cleanString(req.body.category, "Category", 80).toLowerCase(),
     date = optionalDate(req.body.date, "Date");
-  res.json(
-    await model.updateTransaction(req.user.id, req.params.id, {
+  const row = await model.updateTransaction(req.user.id, req.params.id, {
       description,
       amount,
       category,
       date,
-    }),
-  );
+    });
+  await notifyBudgetHits(req.user.id, category);
+  res.json(row);
+}
+async function notifyBudgetHits(userId, category) {
+  if (category === "income") return;
+  const settings = await settingsModel.get(userId);
+  if (!settings.budget_alerts) return;
+  const budgets = await budgetModel.alerts(userId);
+  for (const budget of budgets) {
+    if (budget.category.toLowerCase() !== category || budget.usage_percentage < 80) continue;
+    const reached = budget.usage_percentage >= 100;
+    const title = `${budget.category} budget ${reached ? "limit reached" : "nearly reached"}`;
+    await notificationModel.createOnce(userId, "budget", title,
+      `${budget.category} spending is ${budget.usage_percentage}% of its monthly limit.`);
+  }
 }
 async function deleteTransaction(req, res) {
   await model.deleteTransaction(req.user.id, req.params.id);

@@ -64,6 +64,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       toast("Goal saved");
       goals = await api("/goals");
       renderGoals();
+      if (typeof loadNotifications === "function") await loadNotifications();
     } catch (err) {
       toast(err.message);
     }
@@ -80,6 +81,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       toast("Money moved into goal");
       goals = await api("/goals");
       renderGoals();
+      if (typeof loadNotifications === "function") await loadNotifications();
     } catch (err) {
       toast(err.message);
     }

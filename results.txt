@@ -1,0 +1,11 @@
+Fixes completed
+
+- Username validation now accepts letters and spaces only during account registration and profile updates. The profile and registration forms also provide a matching browser-side constraint.
+- Transaction dates are capped at today's date in the transaction form, and the server rejects invalid or future dates for both transaction creation and edits.
+- The notification dropdown now renders saved notifications, lets the user mark a notification as read, and provides a Clear all action.
+- Budget notifications are created when spending reaches 80% of a category's monthly budget and when it reaches or exceeds the limit. Budget alerts respect the user's existing Budget alerts preference, and duplicate alerts of the same kind are suppressed within a month.
+- A goal-completion notification is created when a contribution completes a savings goal. It respects the existing Goal reminders preference.
+- The Email notifications toggle was removed from Settings, and its client-side load/save code no longer expects the control.
+- The Profile item was removed from the shared sidebar navigation as requested; the profile page and its account management functions remain available by direct URL.
+
+No tests were run.

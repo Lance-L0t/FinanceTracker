@@ -8,6 +8,8 @@ async function me(req, res) {
 async function update(req, res) {
   const username = cleanString(req.body.username, "Username", 100),
     email = cleanString(req.body.email, "Email", 190).toLowerCase();
+  if (!/^[\p{L}]+(?: [\p{L}]+)*$/u.test(username))
+    return res.status(400).json({ error: "Username can contain letters and spaces only" });
   const existing = await users.findByEmail(email);
   if (existing && existing.id !== req.user.id)
     return res

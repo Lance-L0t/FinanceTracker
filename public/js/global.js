@@ -69,7 +69,7 @@ function initSidebar() {
   const side = $(".sidebar");
   if (!side) return;
   const path = location.pathname;
-  side.innerHTML = `<a href="/dashboard"><div class="brand"><div class="brand-icon"><i class="fa-solid fa-wallet"></i></div><div><h2>Chapaa Hub</h2><span>Money, but make it simple.</span></div></div></a><p class="sidebar-label">OVERVIEW</p><nav class="nav"><a class="nav-item ${path === "/dashboard" ? "active" : ""}" href="/dashboard"><i class="fa-solid fa-house"></i><span>Dashboard</span></a><a class="nav-item ${path.includes("/transactions") ? "active" : ""}" href="/dashboard/transactions"><i class="fa-solid fa-arrow-right-arrow-left"></i><span>Transactions</span></a><a class="nav-item ${path.includes("/analytics") ? "active" : ""}" href="/dashboard/analytics"><i class="fa-solid fa-chart-pie"></i><span>Analytics</span></a></nav><p class="sidebar-label">PLAN</p><nav class="nav"><a class="nav-item ${path.includes("/budgets") ? "active" : ""}" href="/dashboard/budgets"><i class="fa-solid fa-wallet"></i><span>Budgets</span></a><a class="nav-item ${path.includes("/goals") ? "active" : ""}" href="/dashboard/goals"><i class="fa-solid fa-bullseye"></i><span>Goals</span></a><a class="nav-item ${path.includes("/recurring") ? "active" : ""}" href="/dashboard/recurring"><i class="fa-solid fa-repeat"></i><span>Recurring</span></a></nav><p class="sidebar-label">MANAGE</p><nav class="nav"><a class="nav-item ${path.includes("/accounts") ? "active" : ""}" href="/dashboard/accounts"><i class="fa-solid fa-credit-card"></i><span>Accounts</span></a><a class="nav-item ${path.includes("/reports") ? "active" : ""}" href="/dashboard/reports"><i class="fa-solid fa-file-lines"></i><span>Reports</span></a></nav><div class="sidebar-bottom"><div class="help-card"><strong>Money check-in ✨</strong><span>One small decision today can make next month easier.</span></div><a class="nav-item ${path === "/profile" ? "active" : ""}" href="/profile"><i class="fa-solid fa-user"></i><span>Profile</span></a><a class="nav-item ${path === "/settings" ? "active" : ""}" href="/settings"><i class="fa-solid fa-gear"></i><span>Settings</span></a><a class="nav-item" href="/auth/logout"><i class="fa-solid fa-right-from-bracket"></i><span>Log out</span></a></div>`;
+  side.innerHTML = `<a href="/dashboard"><div class="brand"><div class="brand-icon"><i class="fa-solid fa-wallet"></i></div><div><h2>Chapaa Hub</h2><span>Money, but make it simple.</span></div></div></a><p class="sidebar-label">OVERVIEW</p><nav class="nav"><a class="nav-item ${path === "/dashboard" ? "active" : ""}" href="/dashboard"><i class="fa-solid fa-house"></i><span>Dashboard</span></a><a class="nav-item ${path.includes("/transactions") ? "active" : ""}" href="/dashboard/transactions"><i class="fa-solid fa-arrow-right-arrow-left"></i><span>Transactions</span></a><a class="nav-item ${path.includes("/analytics") ? "active" : ""}" href="/dashboard/analytics"><i class="fa-solid fa-chart-pie"></i><span>Analytics</span></a></nav><p class="sidebar-label">PLAN</p><nav class="nav"><a class="nav-item ${path.includes("/budgets") ? "active" : ""}" href="/dashboard/budgets"><i class="fa-solid fa-wallet"></i><span>Budgets</span></a><a class="nav-item ${path.includes("/goals") ? "active" : ""}" href="/dashboard/goals"><i class="fa-solid fa-bullseye"></i><span>Goals</span></a><a class="nav-item ${path.includes("/recurring") ? "active" : ""}" href="/dashboard/recurring"><i class="fa-solid fa-repeat"></i><span>Recurring</span></a></nav><p class="sidebar-label">MANAGE</p><nav class="nav"><a class="nav-item ${path.includes("/accounts") ? "active" : ""}" href="/dashboard/accounts"><i class="fa-solid fa-credit-card"></i><span>Accounts</span></a><a class="nav-item ${path.includes("/reports") ? "active" : ""}" href="/dashboard/reports"><i class="fa-solid fa-file-lines"></i><span>Reports</span></a></nav><div class="sidebar-bottom"><div class="help-card"><strong>Money check-in ✨</strong><span>One small decision today can make next month easier.</span></div><a class="nav-item ${path === "/settings" ? "active" : ""}" href="/settings"><i class="fa-solid fa-gear"></i><span>Settings</span></a><a class="nav-item" href="/auth/logout"><i class="fa-solid fa-right-from-bracket"></i><span>Log out</span></a></div>`;
 }
 function initGlobalTools() {
   const top = $(".topbar");
@@ -98,7 +98,7 @@ function initGlobalTools() {
     const w = document.createElement("div");
     w.className = "notification-wrap";
     w.innerHTML =
-      '<button id="notification-toggle" class="icon-btn"><i class="fa-regular fa-bell"></i></button><div class="menu" id="notification-menu"><div style="padding:7px;font-size:10px;font-weight:800">Notifications</div><div id="notification-list" class="notification-list"></div></div>';
+      '<button id="notification-toggle" class="icon-btn" aria-label="Notifications" aria-expanded="false"><i class="fa-regular fa-bell"></i></button><div class="menu" id="notification-menu"><div style="display:flex;justify-content:space-between;align-items:center;padding:7px;font-size:10px;font-weight:800"><span>Notifications</span><button type="button" id="clear-notifications" class="link-btn">Clear all</button></div><div id="notification-list" class="notification-list"></div></div>';
     actions.insertBefore(w, actions.firstChild);
   }
 }
@@ -118,7 +118,7 @@ async function loadNotifications() {
           .slice(0, 7)
           .map(
             (n) =>
-              `<div class="notice"><strong>${escapeHtml(n.title)}</strong><span>${escapeHtml(n.message)}</span></div>`,
+              `<button type="button" class="notice${n.read_at ? " read" : ""}" data-notification-id="${Number(n.id)}"><strong>${escapeHtml(n.title)}</strong><span>${escapeHtml(n.message)}</span></button>`,
           )
           .join("")
       : '<div class="empty">You are all caught up.</div>';
@@ -138,6 +138,13 @@ function bindGlobal() {
   $("#mobile-toggle")?.addEventListener("click", () =>
     $(".sidebar")?.classList.toggle("open"),
   );
+  $("#clear-notifications")?.addEventListener("click", async (e) => {
+    e.stopPropagation();
+    try {
+      await api("/notifications", { method: "DELETE" });
+      await loadNotifications();
+    } catch (err) { toast(err.message); }
+  });
   document.addEventListener("click", (e) => {
     const btn = e.target.closest("[data-menu-btn]");
     if (btn) {
@@ -148,7 +155,15 @@ function bindGlobal() {
       return;
     }
     if (e.target.closest("#notification-toggle")) {
-      $("#notification-menu")?.classList.toggle("show");
+      const menu = $("#notification-menu");
+      menu?.classList.toggle("show");
+      $("#notification-toggle")?.setAttribute("aria-expanded", String(menu?.classList.contains("show")));
+      return;
+    }
+    const notice = e.target.closest("[data-notification-id]");
+    if (notice && !notice.classList.contains("read")) {
+      api(`/notifications/${notice.dataset.notificationId}/read`, { method: "PATCH" })
+        .then(loadNotifications).catch((err) => toast(err.message));
       return;
     }
     if (!e.target.closest(".menu"))

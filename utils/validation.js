@@ -29,6 +29,15 @@ function optionalDate(value, field = "Date") {
     e.status = 400;
     throw e;
   }
+  const dateOnly = /^\d{4}-\d{2}-\d{2}$/.test(String(value));
+  const chosen = dateOnly ? new Date(`${value}T00:00:00`) : d;
+  const today = new Date();
+  today.setHours(23, 59, 59, 999);
+  if (chosen > today) {
+    const e = new Error(`${field} cannot be in the future`);
+    e.status = 400;
+    throw e;
+  }
   return value;
 }
 function integerId(value, field = "ID") {

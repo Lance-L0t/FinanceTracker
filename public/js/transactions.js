@@ -39,6 +39,8 @@ function editTx(x) {
   openModal("tx-modal");
 }
 document.addEventListener("DOMContentLoaded", async () => {
+  const dateInput = $("#transaction-date");
+  if (dateInput) dateInput.max = new Date().toLocaleDateString("en-CA");
   try {
     txRows = await api("/expenses");
     const q = new URLSearchParams(location.search).get("search");
@@ -75,6 +77,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       toast(d.id ? "Transaction updated" : "Transaction added");
       txRows = await api("/expenses");
       renderTx();
+      if (typeof loadNotifications === "function") await loadNotifications();
     } catch (err) {
       toast(err.message);
     }

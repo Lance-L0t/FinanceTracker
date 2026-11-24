@@ -1204,9 +1204,19 @@ button {
 }
 
 .notice {
+    display: block;
+    width: 100%;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
     padding: 9px 0;
     border-bottom: 1px solid var(--border)
 }
+
+.notice.read { opacity: .65; }
 
 .notice strong {
     font-size: 9px;
